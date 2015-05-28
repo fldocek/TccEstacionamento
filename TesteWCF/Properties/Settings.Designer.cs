@@ -26,10 +26,10 @@ namespace TesteWCF.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://smartparking.somee.com/Service1.svc")]
-        public string TesteWCF_com_somee_smartparking_Service1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://smartparking.somee.com/Servico.svc")]
+        public string TesteWCF_smartparking_Servico {
             get {
-                return ((string)(this["TesteWCF_com_somee_smartparking_Service1"]));
+                return ((string)(this["TesteWCF_smartparking_Servico"]));
             }
         }
     }

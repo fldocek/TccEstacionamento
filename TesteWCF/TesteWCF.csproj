@@ -35,6 +35,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,7 +52,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Web References\com.somee.smartparking\Reference.cs">
+    <Compile Include="Web References\smartparking\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -62,21 +64,33 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\com.somee.smartparking\CompositeType.datasource">
+    <None Include="Web References\smartparking\CompositeType.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\com.somee.smartparking\Reference.map">
+    <None Include="Web References\smartparking\dtoCaminho.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\smartparking\dtoSituacaoVaga.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\smartparking\dtoVaga.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\smartparking\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\com.somee.smartparking\Service1.wsdl" />
-    <None Include="Web References\com.somee.smartparking\Service1.xsd">
+    <None Include="Web References\smartparking\Servico.wsdl" />
+    <None Include="Web References\smartparking\Servico.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\com.somee.smartparking\Service10.xsd">
+    <None Include="Web References\smartparking\Servico0.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\com.somee.smartparking\Service11.xsd">
+    <None Include="Web References\smartparking\Servico1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\smartparking\Servico2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -84,20 +98,20 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://smartparking.somee.com/Service1.svc">
+    <WebReferenceUrl Include="http://smartparking.somee.com">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\com.somee.smartparking\</RelPath>
-      <UpdateFromURL>http://smartparking.somee.com/Service1.svc</UpdateFromURL>
+      <RelPath>Web References\smartparking\</RelPath>
+      <UpdateFromURL>http://smartparking.somee.com</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TesteWCF_com_somee_smartparking_Service1</CachedSettingsPropName>
+      <CachedSettingsPropName>TesteWCF_smartparking_Servico</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\com.somee.smartparking\Service1.disco" />
+    <None Include="Web References\smartparking\Servico.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

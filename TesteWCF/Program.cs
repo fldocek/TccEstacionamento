@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TesteWCF.smartparking;
 
 namespace TesteWCF
 {
@@ -10,7 +11,7 @@ namespace TesteWCF
     {
         static void Main(string[] args)
         {
-            var servico = new com.somee.smartparking.Service1();
+            var servico = new Servico();
 
             string teste = servico.GetData(10, true);
 

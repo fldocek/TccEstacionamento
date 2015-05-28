@@ -6,6 +6,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dados", "Dados\Dados.csproj", "{876AC577-23C0-4AD7-A9E8-F3388D1FCC7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteWCF", "TesteWCF\TesteWCF.csproj", "{20029F33-5CEA-471E-B1CD-05FA3B47E52A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5423F1D8-3660-40CE-83EF-BF1FD7EBE6F7} = {5423F1D8-3660-40CE-83EF-BF1FD7EBE6F7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
