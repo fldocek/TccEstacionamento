@@ -8,21 +8,43 @@ using System.Text;
 
 namespace ParkingService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-    [ServiceContract]
-    public interface IService1
-    {
 
+    [ServiceContract]
+    public interface IServico
+    {
+        //TODO: Retirar após testes
         [OperationContract]
         string GetData(int value);
 
+        //TODO: Retirar após testes
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
+        
 
-        // TODO: Add your service operations here
+        //Fluxo Reservar Vaga
+        //===================
+
+        [OperationContract]
+        List<dtoVaga> ListarVagasDisponiveis();
+
+        [OperationContract]
+        bool ReservarVaga(int Id_Vaga, int Id_Carro);
+
+        //Fluxo Manter Vaga Reservada
+        //===========================
+
+        [OperationContract]
+        dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga);
+
+        //Fluxo Localizar Carro
+        //=====================
+
+        [OperationContract]
+        dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro);
+
     }
 
-
+    //TODO: Retirar após testes
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
     public class CompositeType
