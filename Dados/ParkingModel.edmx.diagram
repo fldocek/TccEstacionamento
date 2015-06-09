@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3622fbf64ed473fb0c67fc0c74e84ba" Name="Diagram1">
+        <EntityTypeShape EntityType="ParkingDBModel.Andar" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Bloco" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Cliente" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.CodigoQR" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Mapa_Vaga" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Totem" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="ParkingDBModel.FK_Bloco_Andar" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Totem_Andar" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Vaga_Bloco" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Cliente_Carro" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Vaga_Carro" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Totem_CodigoQR" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Mapa" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
