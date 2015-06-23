@@ -2,24 +2,12 @@
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Servico" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://smartparking.somee.com/Servico.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://smartparking.somee.com/Servico.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://smartparking.somee.com/Servico.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ParkingService" />
-      <xsd:import schemaLocation="http://smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+      <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ParkingService" />
+      <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IServico_GetData_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetData" />
-  </wsdl:message>
-  <wsdl:message name="IServico_GetData_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataResponse" />
-  </wsdl:message>
-  <wsdl:message name="IServico_GetDataUsingDataContract_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
-  </wsdl:message>
-  <wsdl:message name="IServico_GetDataUsingDataContract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
-  </wsdl:message>
   <wsdl:message name="IServico_ListarVagasDisponiveis_InputMessage">
     <wsdl:part name="parameters" element="tns:ListarVagasDisponiveis" />
   </wsdl:message>
@@ -45,14 +33,6 @@
     <wsdl:part name="parameters" element="tns:LocalizarCarroResponse" />
   </wsdl:message>
   <wsdl:portType name="IServico">
-    <wsdl:operation name="GetData">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServico/GetData" message="tns:IServico_GetData_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServico/GetDataResponse" message="tns:IServico_GetData_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServico/GetDataUsingDataContract" message="tns:IServico_GetDataUsingDataContract_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServico/GetDataUsingDataContractResponse" message="tns:IServico_GetDataUsingDataContract_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ListarVagasDisponiveis">
       <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarVagasDisponiveis" message="tns:IServico_ListarVagasDisponiveis_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarVagasDisponiveisResponse" message="tns:IServico_ListarVagasDisponiveis_OutputMessage" />
@@ -72,24 +52,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServico" type="tns:IServico">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetData">
-      <soap:operation soapAction="http://tempuri.org/IServico/GetData" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDataUsingDataContract">
-      <soap:operation soapAction="http://tempuri.org/IServico/GetDataUsingDataContract" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="ListarVagasDisponiveis">
       <soap:operation soapAction="http://tempuri.org/IServico/ListarVagasDisponiveis" style="document" />
       <wsdl:input>
@@ -129,7 +91,7 @@
   </wsdl:binding>
   <wsdl:service name="Servico">
     <wsdl:port name="BasicHttpBinding_IServico" binding="tns:BasicHttpBinding_IServico">
-      <soap:address location="http://smartparking.somee.com/Servico.svc" />
+      <soap:address location="http://www.smartparking.somee.com/Servico.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

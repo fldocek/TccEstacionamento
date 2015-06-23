@@ -26,7 +26,7 @@ namespace TesteWCF.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://smartparking.somee.com/Servico.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.smartparking.somee.com/Servico.svc")]
         public string TesteWCF_smartparking_Servico {
             get {
                 return ((string)(this["TesteWCF_smartparking_Servico"]));

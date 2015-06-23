@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://smartparking.somee.com/Servico.svc?wsdl" filename="Servico.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://smartparking.somee.com/Servico.svc?xsd=xsd1" filename="Servico.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://smartparking.somee.com/Servico.svc?xsd=xsd0" filename="Servico0.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://smartparking.somee.com/Servico.svc?xsd=xsd3" filename="Servico1.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://smartparking.somee.com/Servico.svc?xsd=xsd2" filename="Servico2.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://smartparking.somee.com/Servico.svc?disco" filename="Servico.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://www.smartparking.somee.com/Servico.svc?wsdl" filename="Servico.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://www.smartparking.somee.com/Servico.svc?disco" filename="Servico.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" filename="Servico.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" filename="Servico0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd0" filename="Servico1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" filename="Servico2.xsd" />
   </Results>
 </DiscoveryClientResultsFile>

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Dados;
 
 namespace ParkingService
 {
@@ -12,31 +13,24 @@ namespace ParkingService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Servico : IServico
     {
-        //TODO: Retirar após testes
-        public string GetData(int value)
+        ParkingDBEntities ct = new ParkingDBEntities();
+
+        public IEnumerable<dtoVaga> ListarVagasDisponiveis()
         {
-            return string.Format("You entered: {0}", value);
-        }
+            string situacao = eSituacaoVaga.Livre.ToString();
 
-        //TODO: Retirar após testes
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
+            var lista = (from Vaga V in ct.Vaga
+                         where V.ReservaDisponivel
+                         select new dtoVaga
+                         {
+                             Andar = V.Bloco.Andar.Nome,
+                             Bloco = V.Bloco.Nome,
+                             Id = V.Id,
+                             Nome = V.Nome,
+                             Disponivel = (V.Situacao == situacao)
+                         });
 
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
-
-
-        public List<dtoVaga> ListarVagasDisponiveis()
-        {
-            throw new NotImplementedException();
+            return lista;
         }
 
         public bool ReservarVaga(int Id_Vaga, int Id_Carro)

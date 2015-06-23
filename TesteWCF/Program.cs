@@ -11,12 +11,31 @@ namespace TesteWCF
     {
         static void Main(string[] args)
         {
-            var servico = new Servico();
+            try
+            {
+                Console.WriteLine("Iniciando Chamada ao serviço ...\n");
 
-            string teste = servico.GetData(10, true);
+                var servico = new Servico();
 
-            Console.WriteLine("Teste: " + teste);
+                dtoVaga[] ListaVagas = servico.ListarVagasDisponiveis();
 
+                foreach (var vaga in ListaVagas)
+                {
+                    Console.WriteLine();
+
+                    Console.WriteLine(string.Format("Vaga {0} [ Id={1}, Andar={2}, Bloco={3}, Livre={4} ]",
+                                                    vaga.Nome, vaga.Id.ToString(), vaga.Andar, vaga.Bloco, vaga.Disponivel.ToString()));
+
+                }
+
+                Console.WriteLine("\nFim do método!");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERRO: " + ex.Message);
+            }
+            
             Console.ReadLine();
         }
     }

@@ -13,7 +13,7 @@ namespace ParkingService
     public class dtoVaga
     {
         [DataMember]
-        public int Id_Vaga { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public String Bloco { get; set; }
@@ -22,10 +22,10 @@ namespace ParkingService
         public String Andar { get; set; }
 
         [DataMember]
-        public String Vaga { get; set; }
+        public String Nome { get; set; }
 
         [DataMember]
-        public bool disponibilidade { get; set; }
+        public bool Disponivel { get; set; }
 
     }
 }

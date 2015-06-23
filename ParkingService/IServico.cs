@@ -12,20 +12,12 @@ namespace ParkingService
     [ServiceContract]
     public interface IServico
     {
-        //TODO: Retirar após testes
-        [OperationContract]
-        string GetData(int value);
-
-        //TODO: Retirar após testes
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-        
 
         //Fluxo Reservar Vaga
         //===================
 
         [OperationContract]
-        List<dtoVaga> ListarVagasDisponiveis();
+        IEnumerable<dtoVaga> ListarVagasDisponiveis();
 
         [OperationContract]
         bool ReservarVaga(int Id_Vaga, int Id_Carro);

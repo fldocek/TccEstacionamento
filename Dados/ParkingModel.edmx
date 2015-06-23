@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ParkingDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ParkingDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ParkingDBModelStoreContainer">
           <EntitySet Name="Andar" EntityType="ParkingDBModel.Store.Andar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Bloco" EntityType="ParkingDBModel.Store.Bloco" store:Type="Tables" Schema="dbo" />
@@ -128,6 +128,8 @@
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Situacao" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Id_Carro" Type="int" />
+          <Property Name="ReservaDisponivel" Type="bit" Nullable="false" />
+          <Property Name="HoraReserva" Type="datetime" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Role="Andar" Type="ParkingDBModel.Store.Andar" Multiplicity="1" />
@@ -239,8 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ParkingDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -385,6 +386,8 @@
           <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Vaga" ToRole="Bloco" />
           <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
           <NavigationProperty Name="Mapa_Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Mapa_Vaga" />
+          <Property Type="Boolean" Name="ReservaDisponivel" Nullable="false" />
+          <Property Type="DateTime" Name="HoraReserva" Precision="3" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Role="Andar" Type="ParkingDBModel.Andar" Multiplicity="1" />
@@ -580,6 +583,8 @@
           <EntitySetMapping Name="Vaga">
             <EntityTypeMapping TypeName="ParkingDBModel.Vaga">
               <MappingFragment StoreEntitySet="Vaga">
+                <ScalarProperty Name="HoraReserva" ColumnName="HoraReserva" />
+                <ScalarProperty Name="ReservaDisponivel" ColumnName="ReservaDisponivel" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Bloco" ColumnName="Id_Bloco" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />

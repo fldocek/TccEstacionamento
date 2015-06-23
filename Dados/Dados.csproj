@@ -61,6 +61,7 @@
     <Compile Include="CodigoQR.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="eSituacaoVaga.cs" />
     <Compile Include="Mapa.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>

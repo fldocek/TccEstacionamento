@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TesteWCF_smartparking_Servico" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://smartparking.somee.com/Servico.svc</Value>
+      <Value Profile="(Default)">http://www.smartparking.somee.com/Servico.svc</Value>
     </Setting>
   </Settings>
 </SettingsFile>

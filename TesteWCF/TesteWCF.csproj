@@ -64,9 +64,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\smartparking\CompositeType.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
     <None Include="Web References\smartparking\dtoCaminho.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -98,10 +95,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://smartparking.somee.com">
+    <WebReferenceUrl Include="http://www.smartparking.somee.com/">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\smartparking\</RelPath>
-      <UpdateFromURL>http://smartparking.somee.com</UpdateFromURL>
+      <UpdateFromURL>http://www.smartparking.somee.com/</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

@@ -30,10 +30,6 @@ namespace TesteWCF.smartparking {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Image))]
     public partial class Servico : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback GetDataOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetDataUsingDataContractOperationCompleted;
-        
         private System.Threading.SendOrPostCallback ListarVagasDisponiveisOperationCompleted;
         
         private System.Threading.SendOrPostCallback ReservarVagaOperationCompleted;
@@ -81,12 +77,6 @@ namespace TesteWCF.smartparking {
         }
         
         /// <remarks/>
-        public event GetDataCompletedEventHandler GetDataCompleted;
-        
-        /// <remarks/>
-        public event GetDataUsingDataContractCompletedEventHandler GetDataUsingDataContractCompleted;
-        
-        /// <remarks/>
         public event ListarVagasDisponiveisCompletedEventHandler ListarVagasDisponiveisCompleted;
         
         /// <remarks/>
@@ -97,68 +87,6 @@ namespace TesteWCF.smartparking {
         
         /// <remarks/>
         public event LocalizarCarroCompletedEventHandler LocalizarCarroCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/GetData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string GetData(int value, [System.Xml.Serialization.XmlIgnoreAttribute()] bool valueSpecified) {
-            object[] results = this.Invoke("GetData", new object[] {
-                        value,
-                        valueSpecified});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetDataAsync(int value, bool valueSpecified) {
-            this.GetDataAsync(value, valueSpecified, null);
-        }
-        
-        /// <remarks/>
-        public void GetDataAsync(int value, bool valueSpecified, object userState) {
-            if ((this.GetDataOperationCompleted == null)) {
-                this.GetDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDataOperationCompleted);
-            }
-            this.InvokeAsync("GetData", new object[] {
-                        value,
-                        valueSpecified}, this.GetDataOperationCompleted, userState);
-        }
-        
-        private void OnGetDataOperationCompleted(object arg) {
-            if ((this.GetDataCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetDataCompleted(this, new GetDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/GetDataUsingDataContract", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public CompositeType GetDataUsingDataContract([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] CompositeType composite) {
-            object[] results = this.Invoke("GetDataUsingDataContract", new object[] {
-                        composite});
-            return ((CompositeType)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetDataUsingDataContractAsync(CompositeType composite) {
-            this.GetDataUsingDataContractAsync(composite, null);
-        }
-        
-        /// <remarks/>
-        public void GetDataUsingDataContractAsync(CompositeType composite, object userState) {
-            if ((this.GetDataUsingDataContractOperationCompleted == null)) {
-                this.GetDataUsingDataContractOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDataUsingDataContractOperationCompleted);
-            }
-            this.InvokeAsync("GetDataUsingDataContract", new object[] {
-                        composite}, this.GetDataUsingDataContractOperationCompleted, userState);
-        }
-        
-        private void OnGetDataUsingDataContractOperationCompleted(object arg) {
-            if ((this.GetDataUsingDataContractCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetDataUsingDataContractCompleted(this, new GetDataUsingDataContractCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarVagasDisponiveis", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -318,43 +246,94 @@ namespace TesteWCF.smartparking {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
-    public partial class CompositeType {
+    public partial class dtoVaga {
         
-        private bool boolValueField;
+        private string andarField;
         
-        private bool boolValueFieldSpecified;
+        private string blocoField;
         
-        private string stringValueField;
+        private bool disponivelField;
         
-        /// <remarks/>
-        public bool BoolValue {
-            get {
-                return this.boolValueField;
-            }
-            set {
-                this.boolValueField = value;
-            }
-        }
+        private bool disponivelFieldSpecified;
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private string nomeField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool BoolValueSpecified {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Andar {
             get {
-                return this.boolValueFieldSpecified;
+                return this.andarField;
             }
             set {
-                this.boolValueFieldSpecified = value;
+                this.andarField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string StringValue {
+        public string Bloco {
             get {
-                return this.stringValueField;
+                return this.blocoField;
             }
             set {
-                this.stringValueField = value;
+                this.blocoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Disponivel {
+            get {
+                return this.disponivelField;
+            }
+            set {
+                this.disponivelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DisponivelSpecified {
+            get {
+                return this.disponivelFieldSpecified;
+            }
+            set {
+                this.disponivelFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                this.nomeField = value;
             }
         }
     }
@@ -482,156 +461,6 @@ namespace TesteWCF.smartparking {
             }
             set {
                 this.vagaPerdidaFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
-    public partial class dtoVaga {
-        
-        private string andarField;
-        
-        private string blocoField;
-        
-        private int id_VagaField;
-        
-        private bool id_VagaFieldSpecified;
-        
-        private string vagaField;
-        
-        private bool disponibilidadeField;
-        
-        private bool disponibilidadeFieldSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Andar {
-            get {
-                return this.andarField;
-            }
-            set {
-                this.andarField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Bloco {
-            get {
-                return this.blocoField;
-            }
-            set {
-                this.blocoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Id_Vaga {
-            get {
-                return this.id_VagaField;
-            }
-            set {
-                this.id_VagaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool Id_VagaSpecified {
-            get {
-                return this.id_VagaFieldSpecified;
-            }
-            set {
-                this.id_VagaFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Vaga {
-            get {
-                return this.vagaField;
-            }
-            set {
-                this.vagaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool disponibilidade {
-            get {
-                return this.disponibilidadeField;
-            }
-            set {
-                this.disponibilidadeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool disponibilidadeSpecified {
-            get {
-                return this.disponibilidadeFieldSpecified;
-            }
-            set {
-                this.disponibilidadeFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
-    public delegate void GetDataCompletedEventHandler(object sender, GetDataCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
-    public delegate void GetDataUsingDataContractCompletedEventHandler(object sender, GetDataUsingDataContractCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetDataUsingDataContractCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetDataUsingDataContractCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public CompositeType Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((CompositeType)(this.results[0]));
             }
         }
     }

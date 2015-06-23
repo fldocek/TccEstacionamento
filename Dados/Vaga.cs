@@ -24,6 +24,8 @@ namespace Dados
         public string Nome { get; set; }
         public string Situacao { get; set; }
         public Nullable<int> Id_Carro { get; set; }
+        public bool ReservaDisponivel { get; set; }
+        public Nullable<System.DateTime> HoraReserva { get; set; }
     
         public virtual Bloco Bloco { get; set; }
         public virtual Carro Carro { get; set; }

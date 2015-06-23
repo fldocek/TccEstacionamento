@@ -1,23 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/System.Drawing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Drawing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://smartparking.somee.com/Servico.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfBitmap">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bitmap" nillable="true" type="tns:Bitmap" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfBitmap" nillable="true" type="tns:ArrayOfBitmap" />
-  <xs:complexType name="Bitmap">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Image" />
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Bitmap" nillable="true" type="tns:Bitmap" />
-  <xs:complexType name="Image">
-    <xs:sequence>
-      <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##local" processContents="skip" />
-    </xs:sequence>
-    <xs:attribute ref="ser:FactoryType" />
-  </xs:complexType>
-  <xs:element name="Image" nillable="true" type="tns:Image" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ParkingService" />
+  <xs:element name="ListarVagasDisponiveis">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarVagasDisponiveisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ListarVagasDisponiveisResult" nillable="true" type="q1:ArrayOfdtoVaga" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReservarVaga">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_Vaga" type="xs:int" />
+        <xs:element minOccurs="0" name="Id_Carro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReservarVagaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReservarVagaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSituacaoVaga">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_Vaga" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaSituacaoVagaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ConsultaSituacaoVagaResult" nillable="true" type="q2:dtoSituacaoVaga" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LocalizarCarro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_QRCode" type="xs:int" />
+        <xs:element minOccurs="0" name="Id_Carro" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LocalizarCarroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="LocalizarCarroResult" nillable="true" type="q3:dtoCaminho" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
