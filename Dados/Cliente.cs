@@ -21,6 +21,7 @@ namespace Dados
     
         public int Id { get; set; }
         public string Nome { get; set; }
+        public string CPF { get; set; }
         public System.DateTime Data_Nascimento { get; set; }
         public System.DateTime Data_Cadastrado { get; set; }
         public string Sexo { get; set; }

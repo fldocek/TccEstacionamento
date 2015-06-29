@@ -17,7 +17,13 @@ namespace ParkingService
         //===================
 
         [OperationContract]
-        IEnumerable<dtoVaga> ListarVagasDisponiveis();
+        IEnumerable<dtoAndar> ListarAndares();
+
+        [OperationContract]
+        IEnumerable<dtoBloco> ListarBlocos(int Id_Andar);
+
+        [OperationContract]
+        IEnumerable<dtoVaga> ListarVagas(int Id_Bloco);
 
         [OperationContract]
         bool ReservarVaga(int Id_Vaga, int Id_Carro);
@@ -36,26 +42,4 @@ namespace ParkingService
 
     }
 
-    //TODO: Retirar após testes
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
 }

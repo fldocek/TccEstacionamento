@@ -15,19 +15,54 @@ namespace ParkingService
     {
         ParkingDBEntities ct = new ParkingDBEntities();
 
-        public IEnumerable<dtoVaga> ListarVagasDisponiveis()
+        private string SITUACAO_LIVRE
         {
-            string situacao = eSituacaoVaga.Livre.ToString();
+            get { return eSituacaoVaga.Livre.ToString(); }
+        }        
 
-            var lista = (from Vaga V in ct.Vaga
-                         where V.ReservaDisponivel
+        public IEnumerable<dtoAndar> ListarAndares()
+        {
+            var lista = (from A in ct.Andar
+                         select new dtoAndar
+                         {
+                             Id = A.Id,
+                             Nome = A.Nome,
+                             QtdVagas = (from B in A.Bloco from V in B.Vaga 
+                                         select V).Count(),
+                             QtdLive = (from B in A.Bloco from V in B.Vaga 
+                                        where V.Situacao == SITUACAO_LIVRE
+                                        select V).Count()
+                         });
+
+            return lista;
+        }
+
+        public IEnumerable<dtoBloco> ListarBlocos(int Id_Andar)
+        {
+            var lista = (from B in ct.Bloco
+                         where B.Id_Andar == Id_Andar
+                         select new dtoBloco
+                         {
+                             Id = B.Id,
+                             Nome = B.Nome,
+                             QtdVagas = B.Vaga.Count(),
+                             QtdLive = (from V in B.Vaga
+                                        where V.Situacao == SITUACAO_LIVRE
+                                        select V).Count()
+                         });
+
+            return lista;
+        }
+
+        public IEnumerable<dtoVaga> ListarVagas(int Id_Bloco)
+        {            
+            var lista = (from V in ct.Vaga
+                         where V.Id_Bloco == Id_Bloco
                          select new dtoVaga
                          {
-                             Andar = V.Bloco.Andar.Nome,
-                             Bloco = V.Bloco.Nome,
                              Id = V.Id,
                              Nome = V.Nome,
-                             Disponivel = (V.Situacao == situacao)
+                             Disponivel = (V.Situacao == SITUACAO_LIVRE)
                          });
 
             return lista;

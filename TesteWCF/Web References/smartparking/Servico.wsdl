@@ -8,11 +8,23 @@
       <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IServico_ListarVagasDisponiveis_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListarVagasDisponiveis" />
+  <wsdl:message name="IServico_ListarAndares_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarAndares" />
   </wsdl:message>
-  <wsdl:message name="IServico_ListarVagasDisponiveis_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListarVagasDisponiveisResponse" />
+  <wsdl:message name="IServico_ListarAndares_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarAndaresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarBlocos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarBlocos" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarBlocos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarBlocosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarVagas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarVagas" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarVagas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarVagasResponse" />
   </wsdl:message>
   <wsdl:message name="IServico_ReservarVaga_InputMessage">
     <wsdl:part name="parameters" element="tns:ReservarVaga" />
@@ -33,9 +45,17 @@
     <wsdl:part name="parameters" element="tns:LocalizarCarroResponse" />
   </wsdl:message>
   <wsdl:portType name="IServico">
-    <wsdl:operation name="ListarVagasDisponiveis">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarVagasDisponiveis" message="tns:IServico_ListarVagasDisponiveis_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarVagasDisponiveisResponse" message="tns:IServico_ListarVagasDisponiveis_OutputMessage" />
+    <wsdl:operation name="ListarAndares">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarAndares" message="tns:IServico_ListarAndares_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarAndaresResponse" message="tns:IServico_ListarAndares_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarBlocos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarBlocos" message="tns:IServico_ListarBlocos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarBlocosResponse" message="tns:IServico_ListarBlocos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarVagas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarVagas" message="tns:IServico_ListarVagas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarVagasResponse" message="tns:IServico_ListarVagas_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReservarVaga">
       <wsdl:input wsaw:Action="http://tempuri.org/IServico/ReservarVaga" message="tns:IServico_ReservarVaga_InputMessage" />
@@ -52,8 +72,26 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServico" type="tns:IServico">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="ListarVagasDisponiveis">
-      <soap:operation soapAction="http://tempuri.org/IServico/ListarVagasDisponiveis" style="document" />
+    <wsdl:operation name="ListarAndares">
+      <soap:operation soapAction="http://tempuri.org/IServico/ListarAndares" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarBlocos">
+      <soap:operation soapAction="http://tempuri.org/IServico/ListarBlocos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarVagas">
+      <soap:operation soapAction="http://tempuri.org/IServico/ListarVagas" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

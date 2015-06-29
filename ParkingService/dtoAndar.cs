@@ -10,7 +10,7 @@ using System.Text;
 namespace ParkingService
 {
     [DataContract]
-    public class dtoVaga
+    public class dtoAndar
     {
         [DataMember]
         public int Id { get; set; }
@@ -19,7 +19,10 @@ namespace ParkingService
         public String Nome { get; set; }
 
         [DataMember]
-        public bool Disponivel { get; set; }
+        public int QtdVagas { get; set; }
+
+        [DataMember]
+        public int QtdLive { get; set; }
 
     }
 }

@@ -30,7 +30,11 @@ namespace TesteWCF.smartparking {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Image))]
     public partial class Servico : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback ListarVagasDisponiveisOperationCompleted;
+        private System.Threading.SendOrPostCallback ListarAndaresOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListarBlocosOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListarVagasOperationCompleted;
         
         private System.Threading.SendOrPostCallback ReservarVagaOperationCompleted;
         
@@ -77,7 +81,13 @@ namespace TesteWCF.smartparking {
         }
         
         /// <remarks/>
-        public event ListarVagasDisponiveisCompletedEventHandler ListarVagasDisponiveisCompleted;
+        public event ListarAndaresCompletedEventHandler ListarAndaresCompleted;
+        
+        /// <remarks/>
+        public event ListarBlocosCompletedEventHandler ListarBlocosCompleted;
+        
+        /// <remarks/>
+        public event ListarVagasCompletedEventHandler ListarVagasCompleted;
         
         /// <remarks/>
         public event ReservarVagaCompletedEventHandler ReservarVagaCompleted;
@@ -89,31 +99,97 @@ namespace TesteWCF.smartparking {
         public event LocalizarCarroCompletedEventHandler LocalizarCarroCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarVagasDisponiveis", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarAndares", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
         [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
-        public dtoVaga[] ListarVagasDisponiveis() {
-            object[] results = this.Invoke("ListarVagasDisponiveis", new object[0]);
+        public dtoAndar[] ListarAndares() {
+            object[] results = this.Invoke("ListarAndares", new object[0]);
+            return ((dtoAndar[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListarAndaresAsync() {
+            this.ListarAndaresAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ListarAndaresAsync(object userState) {
+            if ((this.ListarAndaresOperationCompleted == null)) {
+                this.ListarAndaresOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarAndaresOperationCompleted);
+            }
+            this.InvokeAsync("ListarAndares", new object[0], this.ListarAndaresOperationCompleted, userState);
+        }
+        
+        private void OnListarAndaresOperationCompleted(object arg) {
+            if ((this.ListarAndaresCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListarAndaresCompleted(this, new ListarAndaresCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarBlocos", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+        public dtoBloco[] ListarBlocos(int Id_Andar, [System.Xml.Serialization.XmlIgnoreAttribute()] bool Id_AndarSpecified) {
+            object[] results = this.Invoke("ListarBlocos", new object[] {
+                        Id_Andar,
+                        Id_AndarSpecified});
+            return ((dtoBloco[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListarBlocosAsync(int Id_Andar, bool Id_AndarSpecified) {
+            this.ListarBlocosAsync(Id_Andar, Id_AndarSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ListarBlocosAsync(int Id_Andar, bool Id_AndarSpecified, object userState) {
+            if ((this.ListarBlocosOperationCompleted == null)) {
+                this.ListarBlocosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarBlocosOperationCompleted);
+            }
+            this.InvokeAsync("ListarBlocos", new object[] {
+                        Id_Andar,
+                        Id_AndarSpecified}, this.ListarBlocosOperationCompleted, userState);
+        }
+        
+        private void OnListarBlocosOperationCompleted(object arg) {
+            if ((this.ListarBlocosCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListarBlocosCompleted(this, new ListarBlocosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarVagas", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+        public dtoVaga[] ListarVagas(int Id_Bloco, [System.Xml.Serialization.XmlIgnoreAttribute()] bool Id_BlocoSpecified) {
+            object[] results = this.Invoke("ListarVagas", new object[] {
+                        Id_Bloco,
+                        Id_BlocoSpecified});
             return ((dtoVaga[])(results[0]));
         }
         
         /// <remarks/>
-        public void ListarVagasDisponiveisAsync() {
-            this.ListarVagasDisponiveisAsync(null);
+        public void ListarVagasAsync(int Id_Bloco, bool Id_BlocoSpecified) {
+            this.ListarVagasAsync(Id_Bloco, Id_BlocoSpecified, null);
         }
         
         /// <remarks/>
-        public void ListarVagasDisponiveisAsync(object userState) {
-            if ((this.ListarVagasDisponiveisOperationCompleted == null)) {
-                this.ListarVagasDisponiveisOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarVagasDisponiveisOperationCompleted);
+        public void ListarVagasAsync(int Id_Bloco, bool Id_BlocoSpecified, object userState) {
+            if ((this.ListarVagasOperationCompleted == null)) {
+                this.ListarVagasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarVagasOperationCompleted);
             }
-            this.InvokeAsync("ListarVagasDisponiveis", new object[0], this.ListarVagasDisponiveisOperationCompleted, userState);
+            this.InvokeAsync("ListarVagas", new object[] {
+                        Id_Bloco,
+                        Id_BlocoSpecified}, this.ListarVagasOperationCompleted, userState);
         }
         
-        private void OnListarVagasDisponiveisOperationCompleted(object arg) {
-            if ((this.ListarVagasDisponiveisCompleted != null)) {
+        private void OnListarVagasOperationCompleted(object arg) {
+            if ((this.ListarVagasCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ListarVagasDisponiveisCompleted(this, new ListarVagasDisponiveisCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.ListarVagasCompleted(this, new ListarVagasCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -246,15 +322,7 @@ namespace TesteWCF.smartparking {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
-    public partial class dtoVaga {
-        
-        private string andarField;
-        
-        private string blocoField;
-        
-        private bool disponivelField;
-        
-        private bool disponivelFieldSpecified;
+    public partial class dtoAndar {
         
         private int idField;
         
@@ -262,48 +330,13 @@ namespace TesteWCF.smartparking {
         
         private string nomeField;
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Andar {
-            get {
-                return this.andarField;
-            }
-            set {
-                this.andarField = value;
-            }
-        }
+        private int qtdLiveField;
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string Bloco {
-            get {
-                return this.blocoField;
-            }
-            set {
-                this.blocoField = value;
-            }
-        }
+        private bool qtdLiveFieldSpecified;
         
-        /// <remarks/>
-        public bool Disponivel {
-            get {
-                return this.disponivelField;
-            }
-            set {
-                this.disponivelField = value;
-            }
-        }
+        private int qtdVagasField;
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DisponivelSpecified {
-            get {
-                return this.disponivelFieldSpecified;
-            }
-            set {
-                this.disponivelFieldSpecified = value;
-            }
-        }
+        private bool qtdVagasFieldSpecified;
         
         /// <remarks/>
         public int Id {
@@ -334,6 +367,48 @@ namespace TesteWCF.smartparking {
             }
             set {
                 this.nomeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int QtdLive {
+            get {
+                return this.qtdLiveField;
+            }
+            set {
+                this.qtdLiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QtdLiveSpecified {
+            get {
+                return this.qtdLiveFieldSpecified;
+            }
+            set {
+                this.qtdLiveFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int QtdVagas {
+            get {
+                return this.qtdVagasField;
+            }
+            set {
+                this.qtdVagasField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QtdVagasSpecified {
+            get {
+                return this.qtdVagasFieldSpecified;
+            }
+            set {
+                this.qtdVagasFieldSpecified = value;
             }
         }
     }
@@ -466,18 +541,239 @@ namespace TesteWCF.smartparking {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+    public partial class dtoVaga {
+        
+        private bool disponivelField;
+        
+        private bool disponivelFieldSpecified;
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private string nomeField;
+        
+        /// <remarks/>
+        public bool Disponivel {
+            get {
+                return this.disponivelField;
+            }
+            set {
+                this.disponivelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DisponivelSpecified {
+            get {
+                return this.disponivelFieldSpecified;
+            }
+            set {
+                this.disponivelFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                this.nomeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+    public partial class dtoBloco {
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private string nomeField;
+        
+        private int qtdLiveField;
+        
+        private bool qtdLiveFieldSpecified;
+        
+        private int qtdVagasField;
+        
+        private bool qtdVagasFieldSpecified;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Nome {
+            get {
+                return this.nomeField;
+            }
+            set {
+                this.nomeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int QtdLive {
+            get {
+                return this.qtdLiveField;
+            }
+            set {
+                this.qtdLiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QtdLiveSpecified {
+            get {
+                return this.qtdLiveFieldSpecified;
+            }
+            set {
+                this.qtdLiveFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int QtdVagas {
+            get {
+                return this.qtdVagasField;
+            }
+            set {
+                this.qtdVagasField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QtdVagasSpecified {
+            get {
+                return this.qtdVagasFieldSpecified;
+            }
+            set {
+                this.qtdVagasFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
-    public delegate void ListarVagasDisponiveisCompletedEventHandler(object sender, ListarVagasDisponiveisCompletedEventArgs e);
+    public delegate void ListarAndaresCompletedEventHandler(object sender, ListarAndaresCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ListarVagasDisponiveisCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class ListarAndaresCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ListarVagasDisponiveisCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal ListarAndaresCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public dtoAndar[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((dtoAndar[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void ListarBlocosCompletedEventHandler(object sender, ListarBlocosCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListarBlocosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListarBlocosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public dtoBloco[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((dtoBloco[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void ListarVagasCompletedEventHandler(object sender, ListarVagasCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListarVagasCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListarVagasCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

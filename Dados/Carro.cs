@@ -21,7 +21,7 @@ namespace Dados
     
         public int Id { get; set; }
         public int Id_Cliente { get; set; }
-        public string Apelido { get; set; }
+        public string Marca { get; set; }
         public string Placa { get; set; }
     
         public virtual Cliente Cliente { get; set; }

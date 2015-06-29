@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ParkingService" />
-  <xs:element name="ListarVagasDisponiveis">
+  <xs:element name="ListarAndares">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListarVagasDisponiveisResponse">
+  <xs:element name="ListarAndaresResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ListarVagasDisponiveisResult" nillable="true" type="q1:ArrayOfdtoVaga" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ListarAndaresResult" nillable="true" type="q1:ArrayOfdtoAndar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarBlocos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_Andar" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarBlocosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ListarBlocosResult" nillable="true" type="q2:ArrayOfdtoBloco" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarVagas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Id_Bloco" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarVagasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ListarVagasResult" nillable="true" type="q3:ArrayOfdtoVaga" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -38,7 +66,7 @@
   <xs:element name="ConsultaSituacaoVagaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ConsultaSituacaoVagaResult" nillable="true" type="q2:dtoSituacaoVaga" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="ConsultaSituacaoVagaResult" nillable="true" type="q4:dtoSituacaoVaga" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -53,7 +81,7 @@
   <xs:element name="LocalizarCarroResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="LocalizarCarroResult" nillable="true" type="q3:dtoCaminho" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ParkingService" minOccurs="0" name="LocalizarCarroResult" nillable="true" type="q5:dtoCaminho" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

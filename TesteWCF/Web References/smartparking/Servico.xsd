@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ParkingService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ParkingService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+  <xs:complexType name="ArrayOfdtoAndar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoAndar" nillable="true" type="tns:dtoAndar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdtoAndar" nillable="true" type="tns:ArrayOfdtoAndar" />
+  <xs:complexType name="dtoAndar">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QtdLive" type="xs:int" />
+      <xs:element minOccurs="0" name="QtdVagas" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoAndar" nillable="true" type="tns:dtoAndar" />
+  <xs:complexType name="ArrayOfdtoBloco">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoBloco" nillable="true" type="tns:dtoBloco" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdtoBloco" nillable="true" type="tns:ArrayOfdtoBloco" />
+  <xs:complexType name="dtoBloco">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QtdLive" type="xs:int" />
+      <xs:element minOccurs="0" name="QtdVagas" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoBloco" nillable="true" type="tns:dtoBloco" />
   <xs:complexType name="ArrayOfdtoVaga">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoVaga" nillable="true" type="tns:dtoVaga" />
@@ -9,8 +39,6 @@
   <xs:element name="ArrayOfdtoVaga" nillable="true" type="tns:ArrayOfdtoVaga" />
   <xs:complexType name="dtoVaga">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Andar" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Bloco" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Disponivel" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
