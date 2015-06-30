@@ -42,6 +42,16 @@ namespace TesteWCF.smartparking {
         
         private System.Threading.SendOrPostCallback LocalizarCarroOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ListarCarrosOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ListarMarcasCarroOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CadastrarCarroOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AlterarCarroOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ExcluirCarroOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -97,6 +107,21 @@ namespace TesteWCF.smartparking {
         
         /// <remarks/>
         public event LocalizarCarroCompletedEventHandler LocalizarCarroCompleted;
+        
+        /// <remarks/>
+        public event ListarCarrosCompletedEventHandler ListarCarrosCompleted;
+        
+        /// <remarks/>
+        public event ListarMarcasCarroCompletedEventHandler ListarMarcasCarroCompleted;
+        
+        /// <remarks/>
+        public event CadastrarCarroCompletedEventHandler CadastrarCarroCompleted;
+        
+        /// <remarks/>
+        public event AlterarCarroCompletedEventHandler AlterarCarroCompleted;
+        
+        /// <remarks/>
+        public event ExcluirCarroCompletedEventHandler ExcluirCarroCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarAndares", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -298,6 +323,160 @@ namespace TesteWCF.smartparking {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarCarros", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+        public dtoCarro[] ListarCarros([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string CPF) {
+            object[] results = this.Invoke("ListarCarros", new object[] {
+                        CPF});
+            return ((dtoCarro[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListarCarrosAsync(string CPF) {
+            this.ListarCarrosAsync(CPF, null);
+        }
+        
+        /// <remarks/>
+        public void ListarCarrosAsync(string CPF, object userState) {
+            if ((this.ListarCarrosOperationCompleted == null)) {
+                this.ListarCarrosOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarCarrosOperationCompleted);
+            }
+            this.InvokeAsync("ListarCarros", new object[] {
+                        CPF}, this.ListarCarrosOperationCompleted, userState);
+        }
+        
+        private void OnListarCarrosOperationCompleted(object arg) {
+            if ((this.ListarCarrosCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListarCarrosCompleted(this, new ListarCarrosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ListarMarcasCarro", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [return: System.Xml.Serialization.XmlArrayItemAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays")]
+        public string[] ListarMarcasCarro() {
+            object[] results = this.Invoke("ListarMarcasCarro", new object[0]);
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ListarMarcasCarroAsync() {
+            this.ListarMarcasCarroAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ListarMarcasCarroAsync(object userState) {
+            if ((this.ListarMarcasCarroOperationCompleted == null)) {
+                this.ListarMarcasCarroOperationCompleted = new System.Threading.SendOrPostCallback(this.OnListarMarcasCarroOperationCompleted);
+            }
+            this.InvokeAsync("ListarMarcasCarro", new object[0], this.ListarMarcasCarroOperationCompleted, userState);
+        }
+        
+        private void OnListarMarcasCarroOperationCompleted(object arg) {
+            if ((this.ListarMarcasCarroCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ListarMarcasCarroCompleted(this, new ListarMarcasCarroCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/CadastrarCarro", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void CadastrarCarro([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string CPF, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] dtoCarro novoCarro, out bool CadastrarCarroResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool CadastrarCarroResultSpecified) {
+            object[] results = this.Invoke("CadastrarCarro", new object[] {
+                        CPF,
+                        novoCarro});
+            CadastrarCarroResult = ((bool)(results[0]));
+            CadastrarCarroResultSpecified = ((bool)(results[1]));
+        }
+        
+        /// <remarks/>
+        public void CadastrarCarroAsync(string CPF, dtoCarro novoCarro) {
+            this.CadastrarCarroAsync(CPF, novoCarro, null);
+        }
+        
+        /// <remarks/>
+        public void CadastrarCarroAsync(string CPF, dtoCarro novoCarro, object userState) {
+            if ((this.CadastrarCarroOperationCompleted == null)) {
+                this.CadastrarCarroOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCadastrarCarroOperationCompleted);
+            }
+            this.InvokeAsync("CadastrarCarro", new object[] {
+                        CPF,
+                        novoCarro}, this.CadastrarCarroOperationCompleted, userState);
+        }
+        
+        private void OnCadastrarCarroOperationCompleted(object arg) {
+            if ((this.CadastrarCarroCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CadastrarCarroCompleted(this, new CadastrarCarroCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/AlterarCarro", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void AlterarCarro([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] dtoCarro novoCarro, out bool AlterarCarroResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool AlterarCarroResultSpecified) {
+            object[] results = this.Invoke("AlterarCarro", new object[] {
+                        novoCarro});
+            AlterarCarroResult = ((bool)(results[0]));
+            AlterarCarroResultSpecified = ((bool)(results[1]));
+        }
+        
+        /// <remarks/>
+        public void AlterarCarroAsync(dtoCarro novoCarro) {
+            this.AlterarCarroAsync(novoCarro, null);
+        }
+        
+        /// <remarks/>
+        public void AlterarCarroAsync(dtoCarro novoCarro, object userState) {
+            if ((this.AlterarCarroOperationCompleted == null)) {
+                this.AlterarCarroOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAlterarCarroOperationCompleted);
+            }
+            this.InvokeAsync("AlterarCarro", new object[] {
+                        novoCarro}, this.AlterarCarroOperationCompleted, userState);
+        }
+        
+        private void OnAlterarCarroOperationCompleted(object arg) {
+            if ((this.AlterarCarroCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AlterarCarroCompleted(this, new AlterarCarroCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServico/ExcluirCarro", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ExcluirCarro(int Id_Carro, [System.Xml.Serialization.XmlIgnoreAttribute()] bool Id_CarroSpecified, out bool ExcluirCarroResult, [System.Xml.Serialization.XmlIgnoreAttribute()] out bool ExcluirCarroResultSpecified) {
+            object[] results = this.Invoke("ExcluirCarro", new object[] {
+                        Id_Carro,
+                        Id_CarroSpecified});
+            ExcluirCarroResult = ((bool)(results[0]));
+            ExcluirCarroResultSpecified = ((bool)(results[1]));
+        }
+        
+        /// <remarks/>
+        public void ExcluirCarroAsync(int Id_Carro, bool Id_CarroSpecified) {
+            this.ExcluirCarroAsync(Id_Carro, Id_CarroSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void ExcluirCarroAsync(int Id_Carro, bool Id_CarroSpecified, object userState) {
+            if ((this.ExcluirCarroOperationCompleted == null)) {
+                this.ExcluirCarroOperationCompleted = new System.Threading.SendOrPostCallback(this.OnExcluirCarroOperationCompleted);
+            }
+            this.InvokeAsync("ExcluirCarro", new object[] {
+                        Id_Carro,
+                        Id_CarroSpecified}, this.ExcluirCarroOperationCompleted, userState);
+        }
+        
+        private void OnExcluirCarroOperationCompleted(object arg) {
+            if ((this.ExcluirCarroCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ExcluirCarroCompleted(this, new ExcluirCarroCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -409,6 +588,66 @@ namespace TesteWCF.smartparking {
             }
             set {
                 this.qtdVagasFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34234")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/ParkingService")]
+    public partial class dtoCarro {
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private string marcaField;
+        
+        private string placaField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Marca {
+            get {
+                return this.marcaField;
+            }
+            set {
+                this.marcaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Placa {
+            get {
+                return this.placaField;
+            }
+            set {
+                this.placaField = value;
             }
         }
     }
@@ -869,6 +1108,160 @@ namespace TesteWCF.smartparking {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((dtoCaminho)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void ListarCarrosCompletedEventHandler(object sender, ListarCarrosCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListarCarrosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListarCarrosCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public dtoCarro[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((dtoCarro[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void ListarMarcasCarroCompletedEventHandler(object sender, ListarMarcasCarroCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ListarMarcasCarroCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ListarMarcasCarroCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void CadastrarCarroCompletedEventHandler(object sender, CadastrarCarroCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CadastrarCarroCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CadastrarCarroCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool CadastrarCarroResult {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public bool CadastrarCarroResultSpecified {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void AlterarCarroCompletedEventHandler(object sender, AlterarCarroCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AlterarCarroCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AlterarCarroCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool AlterarCarroResult {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public bool AlterarCarroResultSpecified {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[1]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    public delegate void ExcluirCarroCompletedEventHandler(object sender, ExcluirCarroCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ExcluirCarroCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ExcluirCarroCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool ExcluirCarroResult {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+        
+        /// <remarks/>
+        public bool ExcluirCarroResultSpecified {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[1]));
             }
         }
     }

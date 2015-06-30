@@ -3,9 +3,10 @@
   <Results>
     <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://www.smartparking.somee.com/Servico.svc?wsdl" filename="Servico.wsdl" />
     <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://www.smartparking.somee.com/Servico.svc?disco" filename="Servico.disco" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" filename="Servico.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" filename="Servico0.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd0" filename="Servico1.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" filename="Servico2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd4" filename="Servico.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" filename="Servico0.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" filename="Servico1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd0" filename="Servico2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" filename="Servico3.xsd" />
   </Results>
 </DiscoveryClientResultsFile>

@@ -73,6 +73,9 @@
     <None Include="Web References\smartparking\dtoCaminho.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\smartparking\dtoCarro.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\smartparking\dtoSituacaoVaga.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -94,6 +97,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Web References\smartparking\Servico2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\smartparking\Servico3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

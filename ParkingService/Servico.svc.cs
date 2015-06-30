@@ -9,8 +9,6 @@ using Dados;
 
 namespace ParkingService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Servico : IServico
     {
         ParkingDBEntities ct = new ParkingDBEntities();
@@ -18,7 +16,9 @@ namespace ParkingService
         private string SITUACAO_LIVRE
         {
             get { return eSituacaoVaga.Livre.ToString(); }
-        }        
+        }
+        
+        #region Fluxo Reservar Vaga
 
         public IEnumerable<dtoAndar> ListarAndares()
         {
@@ -70,17 +70,105 @@ namespace ParkingService
 
         public bool ReservarVaga(int Id_Vaga, int Id_Carro)
         {
-            throw new NotImplementedException();
+            Vaga vaga = ConsultarVaga(Id_Vaga);
+
+            vaga.Situacao = eSituacaoVaga.Reservada.ToString();
+            vaga.Id_Carro = Id_Carro;
+            vaga.HoraReserva = DateTime.Now;
+
+            ct.SaveChanges();
+
+            return true;
         }
+
+        #endregion
+
+        #region Fluxo Manter Vaga Reservada
 
         public dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga)
         {
             throw new NotImplementedException();
         }
 
+        #endregion
+
+        #region Fluxo Localizar Carro
+
         public dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region Fluxo Manter Carros
+
+        public IEnumerable<dtoCarro> ListarCarros(string CPF)
+        {
+            Cliente cliente = ConsultarCliente(CPF);
+
+            var ListaCarros = (from Ca in cliente.Carro
+                               select new dtoCarro
+                               {
+                                   Id = Ca.Id,
+                                   Marca = Ca.Marca,
+                                   Placa = Ca.Placa
+                               });
+            
+            return ListaCarros;
+        }
+
+        public IEnumerable<string> ListarMarcasCarro()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CadastrarCarro(string CPF, dtoCarro novoCarro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AlterarCarro(dtoCarro novoCarro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ExcluirCarro(int Id_Carro)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region Métodos Internos
+
+        private Cliente ConsultarCliente(string CPF)
+        {
+            CPF = Util.RetirarFormatacaoCPF(CPF);
+
+            Cliente cliente = (from C in ct.Cliente where C.CPF == CPF select C).SingleOrDefault();
+
+            if (cliente == null)
+            {
+                throw new exClienteNaoEncontrado(CPF);
+            }
+
+            return cliente;
+        }
+
+        private Vaga ConsultarVaga(int Id_Vaga)
+        {
+            Vaga vaga = (from V in ct.Vaga where V.Id == Id_Vaga select V).SingleOrDefault();
+
+            if (vaga == null)
+            {
+                throw new exVagaNaoEncontrada(Id_Vaga);
+            }
+
+            return vaga;
+        }
+
+        #endregion
+
     }
 }

@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ParkingService" />
       <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+      <xsd:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServico_ListarAndares_InputMessage">
@@ -44,6 +45,36 @@
   <wsdl:message name="IServico_LocalizarCarro_OutputMessage">
     <wsdl:part name="parameters" element="tns:LocalizarCarroResponse" />
   </wsdl:message>
+  <wsdl:message name="IServico_ListarCarros_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCarros" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarCarros_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarCarrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarMarcasCarro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMarcasCarro" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ListarMarcasCarro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarMarcasCarroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_CadastrarCarro_InputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarCarro" />
+  </wsdl:message>
+  <wsdl:message name="IServico_CadastrarCarro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CadastrarCarroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_AlterarCarro_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarCarro" />
+  </wsdl:message>
+  <wsdl:message name="IServico_AlterarCarro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlterarCarroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ExcluirCarro_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirCarro" />
+  </wsdl:message>
+  <wsdl:message name="IServico_ExcluirCarro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcluirCarroResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServico">
     <wsdl:operation name="ListarAndares">
       <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarAndares" message="tns:IServico_ListarAndares_InputMessage" />
@@ -68,6 +99,26 @@
     <wsdl:operation name="LocalizarCarro">
       <wsdl:input wsaw:Action="http://tempuri.org/IServico/LocalizarCarro" message="tns:IServico_LocalizarCarro_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServico/LocalizarCarroResponse" message="tns:IServico_LocalizarCarro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarCarros">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarCarros" message="tns:IServico_ListarCarros_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarCarrosResponse" message="tns:IServico_ListarCarros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarMarcasCarro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ListarMarcasCarro" message="tns:IServico_ListarMarcasCarro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ListarMarcasCarroResponse" message="tns:IServico_ListarMarcasCarro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarCarro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/CadastrarCarro" message="tns:IServico_CadastrarCarro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/CadastrarCarroResponse" message="tns:IServico_CadastrarCarro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlterarCarro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/AlterarCarro" message="tns:IServico_AlterarCarro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/AlterarCarroResponse" message="tns:IServico_AlterarCarro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirCarro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServico/ExcluirCarro" message="tns:IServico_ExcluirCarro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServico/ExcluirCarroResponse" message="tns:IServico_ExcluirCarro_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServico" type="tns:IServico">
@@ -119,6 +170,51 @@
     </wsdl:operation>
     <wsdl:operation name="LocalizarCarro">
       <soap:operation soapAction="http://tempuri.org/IServico/LocalizarCarro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarCarros">
+      <soap:operation soapAction="http://tempuri.org/IServico/ListarCarros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarMarcasCarro">
+      <soap:operation soapAction="http://tempuri.org/IServico/ListarMarcasCarro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CadastrarCarro">
+      <soap:operation soapAction="http://tempuri.org/IServico/CadastrarCarro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlterarCarro">
+      <soap:operation soapAction="http://tempuri.org/IServico/AlterarCarro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcluirCarro">
+      <soap:operation soapAction="http://tempuri.org/IServico/ExcluirCarro" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

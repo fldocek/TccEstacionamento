@@ -10,19 +10,16 @@ using System.Text;
 namespace ParkingService
 {
     [DataContract]
-    public class dtoBloco
+    public class dtoCarro
     {
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Nome { get; set; }
+        public string Marca { get; set; }
 
         [DataMember]
-        public int QtdVagas { get; set; }
-
-        [DataMember]
-        public int QtdLive { get; set; }
+        public string Placa { get; set; }
 
     }
 }

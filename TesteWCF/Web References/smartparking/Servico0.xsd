@@ -1,23 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/System.Drawing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Drawing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfBitmap">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ParkingService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ParkingService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.smartparking.somee.com/Servico.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+  <xs:complexType name="ArrayOfdtoAndar">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bitmap" nillable="true" type="tns:Bitmap" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoAndar" nillable="true" type="tns:dtoAndar" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfBitmap" nillable="true" type="tns:ArrayOfBitmap" />
-  <xs:complexType name="Bitmap">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Image" />
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Bitmap" nillable="true" type="tns:Bitmap" />
-  <xs:complexType name="Image">
+  <xs:element name="ArrayOfdtoAndar" nillable="true" type="tns:ArrayOfdtoAndar" />
+  <xs:complexType name="dtoAndar">
     <xs:sequence>
-      <xs:any minOccurs="0" maxOccurs="unbounded" namespace="##local" processContents="skip" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QtdLive" type="xs:int" />
+      <xs:element minOccurs="0" name="QtdVagas" type="xs:int" />
     </xs:sequence>
-    <xs:attribute ref="ser:FactoryType" />
   </xs:complexType>
-  <xs:element name="Image" nillable="true" type="tns:Image" />
+  <xs:element name="dtoAndar" nillable="true" type="tns:dtoAndar" />
+  <xs:complexType name="ArrayOfdtoBloco">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoBloco" nillable="true" type="tns:dtoBloco" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdtoBloco" nillable="true" type="tns:ArrayOfdtoBloco" />
+  <xs:complexType name="dtoBloco">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QtdLive" type="xs:int" />
+      <xs:element minOccurs="0" name="QtdVagas" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoBloco" nillable="true" type="tns:dtoBloco" />
+  <xs:complexType name="ArrayOfdtoVaga">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoVaga" nillable="true" type="tns:dtoVaga" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdtoVaga" nillable="true" type="tns:ArrayOfdtoVaga" />
+  <xs:complexType name="dtoVaga">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Disponivel" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoVaga" nillable="true" type="tns:dtoVaga" />
+  <xs:complexType name="dtoSituacaoVaga">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="VagaOcupada" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VagaPerdida" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoSituacaoVaga" nillable="true" type="tns:dtoSituacaoVaga" />
+  <xs:complexType name="dtoCaminho">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ListaImagens" nillable="true" type="q1:ArrayOfBitmap" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoCaminho" nillable="true" type="tns:dtoCaminho" />
+  <xs:complexType name="ArrayOfdtoCarro">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dtoCarro" nillable="true" type="tns:dtoCarro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdtoCarro" nillable="true" type="tns:ArrayOfdtoCarro" />
+  <xs:complexType name="dtoCarro">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Marca" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Placa" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="dtoCarro" nillable="true" type="tns:dtoCarro" />
 </xs:schema>

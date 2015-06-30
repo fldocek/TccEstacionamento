@@ -16,7 +16,7 @@ namespace ParkingService
         public int Id { get; set; }
 
         [DataMember]
-        public String Nome { get; set; }
+        public string Nome { get; set; }
 
         [DataMember]
         public int QtdVagas { get; set; }

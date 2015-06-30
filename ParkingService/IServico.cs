@@ -40,6 +40,24 @@ namespace ParkingService
         [OperationContract]
         dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro);
 
+        //Fluxo Manter Carros
+        //===========================
+
+        [OperationContract]
+        IEnumerable<dtoCarro> ListarCarros(string CPF);
+
+        [OperationContract]
+        IEnumerable<string> ListarMarcasCarro();
+
+        [OperationContract]
+        bool CadastrarCarro(string CPF, dtoCarro novoCarro);
+
+        [OperationContract]
+        bool AlterarCarro(dtoCarro novoCarro);
+
+        [OperationContract]
+        bool ExcluirCarro(int Id_Carro);
+
     }
 
 }

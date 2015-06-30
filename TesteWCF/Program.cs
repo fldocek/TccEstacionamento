@@ -63,6 +63,49 @@ namespace TesteWCF
 
                 Console.WriteLine();
 
+                string CPF = "753.618.942-73";
+
+                Console.WriteLine("Listando Carros do cliente de CPF " + CPF + "...\n");
+
+                dtoCarro[] listaCarros = servico.ListarCarros(CPF);
+
+                foreach (var carro in listaCarros)
+                {
+                    Console.WriteLine(string.Format("Carro: [ Id={0}, Marca={1}, Placa={2} ]",
+                                                    carro.Id, carro.Marca, carro.Placa));
+
+                }
+
+                Console.WriteLine();
+                
+                dtoVaga V1 = listaVagas.First();
+                dtoCarro C1 = listaCarros.First();
+
+                Console.WriteLine("Reservando a primeira vaga...\n");
+
+                bool concluidoComSucesso, resultSpecified;
+
+                servico.ReservarVaga(V1.Id, true, C1.Id, true, out concluidoComSucesso, out resultSpecified);
+
+                if (concluidoComSucesso)
+                {
+                    Console.WriteLine("Reserva feita com sucesso...\n");
+                }
+
+                Console.WriteLine("Listando vagas do bloco " + B1.Nome + "...\n");
+
+                listaVagas = servico.ListarVagas(B1.Id, true);
+
+                foreach (var vaga in listaVagas)
+                {
+
+                    Console.WriteLine(string.Format("Vaga: {0} [ Id={1}, Livre={2} ]",
+                                                    vaga.Nome, vaga.Id.ToString(), vaga.Disponivel.ToString()));
+
+                }
+
+                Console.WriteLine();
+
                 Console.WriteLine("Fim do método!");
 
             }
