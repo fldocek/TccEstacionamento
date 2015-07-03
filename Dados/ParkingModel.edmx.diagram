@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f3622fbf64ed473fb0c67fc0c74e84ba" Name="Diagram1">
-        <EntityTypeShape EntityType="ParkingDBModel.Andar" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.Bloco" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.CodigoQR" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.Mapa_Vaga" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.Totem" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="ParkingDBModel.FK_Bloco_Andar" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Totem_Andar" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Vaga_Bloco" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Totem_CodigoQR" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Mapa" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="4.5" PointY="7.5" />
-        <EntityTypeShape EntityType="ParkingDBModel.Cliente" Width="1.5" PointX="1.5" PointY="7.375" />
+      <Diagram DiagramId="f3622fbf64ed473fb0c67fc0c74e84ba" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="ParkingDBModel.Andar" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="ParkingDBModel.Bloco" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="ParkingDBModel.Caminho" Width="1.5" PointX="7.5" PointY="1.875" />
+        <EntityTypeShape EntityType="ParkingDBModel.Caminho_Mapa" Width="1.5" PointX="9.75" PointY="2" />
+        <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="ParkingDBModel.Cliente" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="7.5" PointY="4.625" />
+        <EntityTypeShape EntityType="ParkingDBModel.Totem" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.25" PointY="0.5" />
+        <AssociationConnector Association="ParkingDBModel.FK_Bloco_Andar" />
+        <AssociationConnector Association="ParkingDBModel.FK_Totem_Andar" />
+        <AssociationConnector Association="ParkingDBModel.FK_Vaga_Bloco" />
+        <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Caminho" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" />
+        <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Mapa" />
         <AssociationConnector Association="ParkingDBModel.FK_Cliente_Carro" />
         <AssociationConnector Association="ParkingDBModel.FK_Vaga_Carro" />
       </Diagram>

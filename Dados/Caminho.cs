@@ -12,17 +12,19 @@ namespace Dados
     using System;
     using System.Collections.Generic;
     
-    public partial class CodigoQR
+    public partial class Caminho
     {
-        public CodigoQR()
+        public Caminho()
         {
-            this.Totem = new HashSet<Totem>();
+            this.Caminho_Mapa = new HashSet<Caminho_Mapa>();
         }
     
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Valor { get; set; }
+        public int Id_Vaga { get; set; }
+        public int Id_Totem { get; set; }
     
-        public virtual ICollection<Totem> Totem { get; set; }
+        public virtual ICollection<Caminho_Mapa> Caminho_Mapa { get; set; }
+        public virtual Totem Totem { get; set; }
+        public virtual Vaga Vaga { get; set; }
     }
 }

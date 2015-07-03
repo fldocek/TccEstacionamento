@@ -16,7 +16,7 @@ namespace Dados
     {
         public Vaga()
         {
-            this.Mapa_Vaga = new HashSet<Mapa_Vaga>();
+            this.Caminho = new HashSet<Caminho>();
         }
     
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace Dados
         public Nullable<System.DateTime> HoraReserva { get; set; }
     
         public virtual Bloco Bloco { get; set; }
-        public virtual ICollection<Mapa_Vaga> Mapa_Vaga { get; set; }
+        public virtual ICollection<Caminho> Caminho { get; set; }
         public virtual Carro Carro { get; set; }
     }
 }

@@ -28,35 +28,20 @@ namespace ParkingService
         [OperationContract]
         bool ReservarVaga(int Id_Vaga, int Id_Carro);
 
+        [OperationContract]
+        IEnumerable<dtoCarro> ListarCarros(string CPF);
+
         //Fluxo Manter Vaga Reservada
         //===========================
 
         [OperationContract]
-        dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga);
+        dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro);
 
         //Fluxo Localizar Carro
         //=====================
 
         [OperationContract]
         dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro);
-
-        //Fluxo Manter Carros
-        //===========================
-
-        [OperationContract]
-        IEnumerable<dtoCarro> ListarCarros(string CPF);
-
-        [OperationContract]
-        IEnumerable<string> ListarMarcasCarro();
-
-        [OperationContract]
-        bool CadastrarCarro(string CPF, dtoCarro novoCarro);
-
-        [OperationContract]
-        bool AlterarCarro(dtoCarro novoCarro);
-
-        [OperationContract]
-        bool ExcluirCarro(int Id_Carro);
 
     }
 

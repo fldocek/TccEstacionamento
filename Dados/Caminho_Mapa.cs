@@ -12,15 +12,13 @@ namespace Dados
     using System;
     using System.Collections.Generic;
     
-    public partial class Mapa_Vaga
+    public partial class Caminho_Mapa
     {
         public int Id { get; set; }
-        public int Id_Vaga { get; set; }
-        public int Id_Totem { get; set; }
+        public int Id_Caminho { get; set; }
         public int Id_Mapa { get; set; }
     
+        public virtual Caminho Caminho { get; set; }
         public virtual Mapa Mapa { get; set; }
-        public virtual Totem Totem { get; set; }
-        public virtual Vaga Vaga { get; set; }
     }
 }

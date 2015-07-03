@@ -14,10 +14,10 @@ namespace ParkingService
     {
 
         [DataMember]
-        public bool VagaOcupada { get; set; }
+        public bool ReservaConcluidaComSucesso { get; set; }
 
         [DataMember]
-        public bool VagaPerdida { get; set; }
+        public bool VagaAindaReservada { get; set; }
 
     }
 }

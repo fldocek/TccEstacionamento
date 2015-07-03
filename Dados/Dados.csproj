@@ -52,20 +52,20 @@
     <Compile Include="Bloco.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Caminho.cs">
+      <DependentUpon>ParkingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Caminho_Mapa.cs">
+      <DependentUpon>ParkingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Carro.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cliente.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodigoQR.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="eSituacaoVaga.cs" />
     <Compile Include="Mapa.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mapa_Vaga.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ParkingModel.Context.cs">

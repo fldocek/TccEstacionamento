@@ -17,7 +17,7 @@ namespace ParkingService
         {
             get { return eSituacaoVaga.Livre.ToString(); }
         }
-        
+
         #region Fluxo Reservar Vaga
 
         public IEnumerable<dtoAndar> ListarAndares()
@@ -27,9 +27,11 @@ namespace ParkingService
                          {
                              Id = A.Id,
                              Nome = A.Nome,
-                             QtdVagas = (from B in A.Bloco from V in B.Vaga 
+                             QtdVagas = (from B in A.Bloco
+                                         from V in B.Vaga
                                          select V).Count(),
-                             QtdLive = (from B in A.Bloco from V in B.Vaga 
+                             QtdLive = (from B in A.Bloco
+                                        from V in B.Vaga
                                         where V.Situacao == SITUACAO_LIVRE
                                         select V).Count()
                          });
@@ -55,7 +57,7 @@ namespace ParkingService
         }
 
         public IEnumerable<dtoVaga> ListarVagas(int Id_Bloco)
-        {            
+        {
             var lista = (from V in ct.Vaga
                          where V.Id_Bloco == Id_Bloco
                          select new dtoVaga
@@ -72,6 +74,11 @@ namespace ParkingService
         {
             Vaga vaga = ConsultarVaga(Id_Vaga);
 
+            if (vaga.Situacao == eSituacaoVaga.Reservada.ToString())
+            {
+                throw new exVagaJaReservada(vaga.Nome);
+            }
+
             vaga.Situacao = eSituacaoVaga.Reservada.ToString();
             vaga.Id_Carro = Id_Carro;
             vaga.HoraReserva = DateTime.Now;
@@ -79,29 +86,9 @@ namespace ParkingService
             ct.SaveChanges();
 
             return true;
+
+            //TODO: Log ReservarVaga
         }
-
-        #endregion
-
-        #region Fluxo Manter Vaga Reservada
-
-        public dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region Fluxo Localizar Carro
-
-        public dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region Fluxo Manter Carros
 
         public IEnumerable<dtoCarro> ListarCarros(string CPF)
         {
@@ -114,28 +101,44 @@ namespace ParkingService
                                    Marca = Ca.Marca,
                                    Placa = Ca.Placa
                                });
-            
+
             return ListaCarros;
         }
 
-        public IEnumerable<string> ListarMarcasCarro()
+        #endregion
+
+        #region Fluxo Manter Vaga Reservada
+
+        public dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro)
         {
-            throw new NotImplementedException();
+            Vaga vaga = ConsultarVaga(Id_Vaga);
+
+            dtoSituacaoVaga situacao = new dtoSituacaoVaga();
+            situacao.VagaAindaReservada = false;
+            situacao.ReservaConcluidaComSucesso = false;
+
+            if (vaga.Situacao == eSituacaoVaga.Reservada.ToString() && vaga.Id_Carro == Id_Carro)
+            {
+                situacao.VagaAindaReservada = true;
+            }
+            else if (vaga.Situacao == eSituacaoVaga.Ocupada.ToString() && vaga.Id_Carro == Id_Carro)
+            {
+                situacao.ReservaConcluidaComSucesso = true;
+
+            }
+
+            return situacao;
         }
 
-        public bool CadastrarCarro(string CPF, dtoCarro novoCarro)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
 
-        public bool AlterarCarro(dtoCarro novoCarro)
-        {
-            throw new NotImplementedException();
-        }
+        #region Fluxo Localizar Carro
 
-        public bool ExcluirCarro(int Id_Carro)
+        public dtoCaminho LocalizarCarro(int Id_Totem, int Id_Carro)
         {
             throw new NotImplementedException();
+
+            //TODO: Log LocalizarCarro (guardar totem pesquisado)
         }
 
         #endregion

@@ -16,16 +16,14 @@ namespace Dados
     {
         public Totem()
         {
-            this.Mapa_Vaga = new HashSet<Mapa_Vaga>();
+            this.Caminho = new HashSet<Caminho>();
         }
     
         public int Id { get; set; }
         public int Id_Andar { get; set; }
-        public int Id_CodigoQR { get; set; }
-        public string Nome { get; set; }
+        public string Localizacao { get; set; }
     
         public virtual Andar Andar { get; set; }
-        public virtual CodigoQR CodigoQR { get; set; }
-        public virtual ICollection<Mapa_Vaga> Mapa_Vaga { get; set; }
+        public virtual ICollection<Caminho> Caminho { get; set; }
     }
 }

@@ -16,12 +16,13 @@ namespace Dados
     {
         public Mapa()
         {
-            this.Mapa_Vaga = new HashSet<Mapa_Vaga>();
+            this.Caminho_Mapa = new HashSet<Caminho_Mapa>();
         }
     
         public int Id { get; set; }
+        public string Descricao { get; set; }
         public byte[] Imagem { get; set; }
     
-        public virtual ICollection<Mapa_Vaga> Mapa_Vaga { get; set; }
+        public virtual ICollection<Caminho_Mapa> Caminho_Mapa { get; set; }
     }
 }

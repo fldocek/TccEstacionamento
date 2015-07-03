@@ -16,4 +16,10 @@ namespace ParkingService
         public exVagaNaoEncontrada(int Id_Vaga) :
             base("Vaga de Id \"" + Id_Vaga + "\" não encontrada!") { }
     }
+
+    public class exVagaJaReservada : ApplicationException
+    {
+        public exVagaJaReservada(string NomeVaga) :
+            base("A Vaga " + NomeVaga + " já se encontra reservada.") { }
+    }
 }

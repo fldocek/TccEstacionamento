@@ -8,39 +8,39 @@
         <EntityContainer Name="ParkingDBModelStoreContainer">
           <EntitySet Name="Andar" EntityType="ParkingDBModel.Store.Andar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Bloco" EntityType="ParkingDBModel.Store.Bloco" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Caminho" EntityType="ParkingDBModel.Store.Caminho" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Caminho_Mapa" EntityType="ParkingDBModel.Store.Caminho_Mapa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Carro" EntityType="ParkingDBModel.Store.Carro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cliente" EntityType="ParkingDBModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CodigoQR" EntityType="ParkingDBModel.Store.CodigoQR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Mapa" EntityType="ParkingDBModel.Store.Mapa" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Mapa_Vaga" EntityType="ParkingDBModel.Store.Mapa_Vaga" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Totem" EntityType="ParkingDBModel.Store.Totem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vaga" EntityType="ParkingDBModel.Store.Vaga" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Bloco_Andar" Association="ParkingDBModel.Store.FK_Bloco_Andar">
             <End Role="Andar" EntitySet="Andar" />
             <End Role="Bloco" EntitySet="Bloco" />
           </AssociationSet>
+          <AssociationSet Name="FK_Caminho_Mapa_Caminho" Association="ParkingDBModel.Store.FK_Caminho_Mapa_Caminho">
+            <End Role="Caminho" EntitySet="Caminho" />
+            <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caminho_Mapa_Mapa" Association="ParkingDBModel.Store.FK_Caminho_Mapa_Mapa">
+            <End Role="Mapa" EntitySet="Mapa" />
+            <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cliente_Carro" Association="ParkingDBModel.Store.FK_Cliente_Carro">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Carro" EntitySet="Carro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mapa_Vaga_Mapa" Association="ParkingDBModel.Store.FK_Mapa_Vaga_Mapa">
-            <End Role="Mapa" EntitySet="Mapa" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
-          </AssociationSet>
           <AssociationSet Name="FK_Mapa_Vaga_Totem" Association="ParkingDBModel.Store.FK_Mapa_Vaga_Totem">
             <End Role="Totem" EntitySet="Totem" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
+            <End Role="Caminho" EntitySet="Caminho" />
           </AssociationSet>
           <AssociationSet Name="FK_Mapa_Vaga_Vaga" Association="ParkingDBModel.Store.FK_Mapa_Vaga_Vaga">
             <End Role="Vaga" EntitySet="Vaga" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
+            <End Role="Caminho" EntitySet="Caminho" />
           </AssociationSet>
           <AssociationSet Name="FK_Totem_Andar" Association="ParkingDBModel.Store.FK_Totem_Andar">
             <End Role="Andar" EntitySet="Andar" />
-            <End Role="Totem" EntitySet="Totem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Totem_CodigoQR" Association="ParkingDBModel.Store.FK_Totem_CodigoQR">
-            <End Role="CodigoQR" EntitySet="CodigoQR" />
             <End Role="Totem" EntitySet="Totem" />
           </AssociationSet>
           <AssociationSet Name="FK_Vaga_Bloco" Association="ParkingDBModel.Store.FK_Vaga_Bloco">
@@ -67,6 +67,22 @@
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Id_Andar" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Caminho">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Vaga" Type="int" Nullable="false" />
+          <Property Name="Id_Totem" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Caminho_Mapa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Caminho" Type="int" Nullable="false" />
+          <Property Name="Id_Mapa" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Carro">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,29 +103,13 @@
           <Property Name="Data_Cadastrado" Type="date" Nullable="false" />
           <Property Name="Sexo" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
-        <EntityType Name="CodigoQR">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Valor" Type="varchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Mapa">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Imagem" Type="image" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Mapa_Vaga">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Vaga" Type="int" Nullable="false" />
-          <Property Name="Id_Totem" Type="int" Nullable="false" />
-          <Property Name="Id_Mapa" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Totem">
           <Key>
@@ -117,8 +117,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Id_Andar" Type="int" Nullable="false" />
-          <Property Name="Id_CodigoQR" Type="int" Nullable="false" />
-          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Localizacao" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="Vaga">
           <Key>
@@ -143,6 +142,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Caminho_Mapa_Caminho">
+          <End Role="Caminho" Type="ParkingDBModel.Store.Caminho" Multiplicity="1" />
+          <End Role="Caminho_Mapa" Type="ParkingDBModel.Store.Caminho_Mapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caminho">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho_Mapa">
+              <PropertyRef Name="Id_Caminho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caminho_Mapa_Mapa">
+          <End Role="Mapa" Type="ParkingDBModel.Store.Mapa" Multiplicity="1" />
+          <End Role="Caminho_Mapa" Type="ParkingDBModel.Store.Caminho_Mapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mapa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho_Mapa">
+              <PropertyRef Name="Id_Mapa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cliente_Carro">
           <End Role="Cliente" Type="ParkingDBModel.Store.Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -157,38 +180,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mapa_Vaga_Mapa">
-          <End Role="Mapa" Type="ParkingDBModel.Store.Mapa" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Store.Mapa_Vaga" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mapa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mapa_Vaga">
-              <PropertyRef Name="Id_Mapa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Mapa_Vaga_Totem">
           <End Role="Totem" Type="ParkingDBModel.Store.Totem" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Store.Mapa_Vaga" Multiplicity="*" />
+          <End Role="Caminho" Type="ParkingDBModel.Store.Caminho" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Totem">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mapa_Vaga">
+            <Dependent Role="Caminho">
               <PropertyRef Name="Id_Totem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mapa_Vaga_Vaga">
           <End Role="Vaga" Type="ParkingDBModel.Store.Vaga" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Store.Mapa_Vaga" Multiplicity="*" />
+          <End Role="Caminho" Type="ParkingDBModel.Store.Caminho" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vaga">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mapa_Vaga">
+            <Dependent Role="Caminho">
               <PropertyRef Name="Id_Vaga" />
             </Dependent>
           </ReferentialConstraint>
@@ -202,18 +213,6 @@
             </Principal>
             <Dependent Role="Totem">
               <PropertyRef Name="Id_Andar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Totem_CodigoQR">
-          <End Role="CodigoQR" Type="ParkingDBModel.Store.CodigoQR" Multiplicity="1" />
-          <End Role="Totem" Type="ParkingDBModel.Store.Totem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CodigoQR">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Totem">
-              <PropertyRef Name="Id_CodigoQR" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -248,9 +247,11 @@
         <EntityContainer Name="ParkingDBEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Andar" EntityType="ParkingDBModel.Andar" />
           <EntitySet Name="Bloco" EntityType="ParkingDBModel.Bloco" />
-          <EntitySet Name="CodigoQR" EntityType="ParkingDBModel.CodigoQR" />
+          <EntitySet Name="Caminho" EntityType="ParkingDBModel.Caminho" />
+          <EntitySet Name="Caminho_Mapa" EntityType="ParkingDBModel.Caminho_Mapa" />
+          <EntitySet Name="Carro" EntityType="ParkingDBModel.Carro" />
+          <EntitySet Name="Cliente" EntityType="ParkingDBModel.Cliente" />
           <EntitySet Name="Mapa" EntityType="ParkingDBModel.Mapa" />
-          <EntitySet Name="Mapa_Vaga" EntityType="ParkingDBModel.Mapa_Vaga" />
           <EntitySet Name="Totem" EntityType="ParkingDBModel.Totem" />
           <EntitySet Name="Vaga" EntityType="ParkingDBModel.Vaga" />
           <AssociationSet Name="FK_Bloco_Andar" Association="ParkingDBModel.FK_Bloco_Andar">
@@ -265,24 +266,22 @@
             <End Role="Bloco" EntitySet="Bloco" />
             <End Role="Vaga" EntitySet="Vaga" />
           </AssociationSet>
-          <AssociationSet Name="FK_Totem_CodigoQR" Association="ParkingDBModel.FK_Totem_CodigoQR">
-            <End Role="CodigoQR" EntitySet="CodigoQR" />
-            <End Role="Totem" EntitySet="Totem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mapa_Vaga_Mapa" Association="ParkingDBModel.FK_Mapa_Vaga_Mapa">
-            <End Role="Mapa" EntitySet="Mapa" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
+          <AssociationSet Name="FK_Caminho_Mapa_Caminho" Association="ParkingDBModel.FK_Caminho_Mapa_Caminho">
+            <End Role="Caminho" EntitySet="Caminho" />
+            <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
           </AssociationSet>
           <AssociationSet Name="FK_Mapa_Vaga_Totem" Association="ParkingDBModel.FK_Mapa_Vaga_Totem">
             <End Role="Totem" EntitySet="Totem" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
+            <End Role="Caminho" EntitySet="Caminho" />
           </AssociationSet>
           <AssociationSet Name="FK_Mapa_Vaga_Vaga" Association="ParkingDBModel.FK_Mapa_Vaga_Vaga">
             <End Role="Vaga" EntitySet="Vaga" />
-            <End Role="Mapa_Vaga" EntitySet="Mapa_Vaga" />
+            <End Role="Caminho" EntitySet="Caminho" />
           </AssociationSet>
-          <EntitySet Name="Carro" EntityType="ParkingDBModel.Carro" />
-          <EntitySet Name="Cliente" EntityType="ParkingDBModel.Cliente" />
+          <AssociationSet Name="FK_Caminho_Mapa_Mapa" Association="ParkingDBModel.FK_Caminho_Mapa_Mapa">
+            <End Role="Mapa" EntitySet="Mapa" />
+            <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cliente_Carro" Association="ParkingDBModel.FK_Cliente_Carro">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Carro" EntitySet="Carro" />
@@ -296,8 +295,8 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Bloco_Andar" FromRole="Andar" ToRole="Bloco" />
           <NavigationProperty Name="Totem" Relationship="ParkingDBModel.FK_Totem_Andar" FromRole="Andar" ToRole="Totem" />
         </EntityType>
@@ -305,151 +304,33 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Id_Andar" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Id_Andar" Nullable="false" />
           <NavigationProperty Name="Andar" Relationship="ParkingDBModel.FK_Bloco_Andar" FromRole="Bloco" ToRole="Andar" />
           <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Bloco" ToRole="Vaga" />
         </EntityType>
-        <EntityType Name="CodigoQR">
+        <EntityType Name="Caminho">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Valor" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Totem" Relationship="ParkingDBModel.FK_Totem_CodigoQR" FromRole="CodigoQR" ToRole="Totem" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_Vaga" Nullable="false" />
+          <Property Type="Int32" Name="Id_Totem" Nullable="false" />
+          <NavigationProperty Name="Caminho_Mapa" Relationship="ParkingDBModel.FK_Caminho_Mapa_Caminho" FromRole="Caminho" ToRole="Caminho_Mapa" />
+          <NavigationProperty Name="Totem" Relationship="ParkingDBModel.FK_Mapa_Vaga_Totem" FromRole="Caminho" ToRole="Totem" />
+          <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Caminho" ToRole="Vaga" />
         </EntityType>
-        <EntityType Name="Mapa">
+        <EntityType Name="Caminho_Mapa">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Imagem" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Mapa_Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Mapa" FromRole="Mapa" ToRole="Mapa_Vaga" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_Caminho" Nullable="false" />
+          <Property Type="Int32" Name="Id_Mapa" Nullable="false" />
+          <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Caminho_Mapa_Caminho" FromRole="Caminho_Mapa" ToRole="Caminho" />
+          <NavigationProperty Name="Mapa" Relationship="ParkingDBModel.FK_Caminho_Mapa_Mapa" FromRole="Caminho_Mapa" ToRole="Mapa" />
         </EntityType>
-        <EntityType Name="Mapa_Vaga">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Vaga" Type="Int32" Nullable="false" />
-          <Property Name="Id_Totem" Type="Int32" Nullable="false" />
-          <Property Name="Id_Mapa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Mapa" Relationship="ParkingDBModel.FK_Mapa_Vaga_Mapa" FromRole="Mapa_Vaga" ToRole="Mapa" />
-          <NavigationProperty Name="Totem" Relationship="ParkingDBModel.FK_Mapa_Vaga_Totem" FromRole="Mapa_Vaga" ToRole="Totem" />
-          <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Mapa_Vaga" ToRole="Vaga" />
-        </EntityType>
-        <EntityType Name="Totem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Andar" Type="Int32" Nullable="false" />
-          <Property Name="Id_CodigoQR" Type="Int32" Nullable="false" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Andar" Relationship="ParkingDBModel.FK_Totem_Andar" FromRole="Totem" ToRole="Andar" />
-          <NavigationProperty Name="CodigoQR" Relationship="ParkingDBModel.FK_Totem_CodigoQR" FromRole="Totem" ToRole="CodigoQR" />
-          <NavigationProperty Name="Mapa_Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Totem" FromRole="Totem" ToRole="Mapa_Vaga" />
-        </EntityType>
-        <EntityType Name="Vaga">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_Bloco" Type="Int32" Nullable="false" />
-          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Situacao" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Id_Carro" Type="Int32" />
-          <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Vaga" ToRole="Bloco" />
-          <NavigationProperty Name="Mapa_Vaga" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Mapa_Vaga" />
-          <Property Type="DateTime" Name="HoraReserva" Precision="3" />
-          <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
-        </EntityType>
-        <Association Name="FK_Bloco_Andar">
-          <End Role="Andar" Type="ParkingDBModel.Andar" Multiplicity="1" />
-          <End Role="Bloco" Type="ParkingDBModel.Bloco" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Andar">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Bloco">
-              <PropertyRef Name="Id_Andar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Totem_Andar">
-          <End Role="Andar" Type="ParkingDBModel.Andar" Multiplicity="1" />
-          <End Role="Totem" Type="ParkingDBModel.Totem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Andar">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Totem">
-              <PropertyRef Name="Id_Andar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vaga_Bloco">
-          <End Role="Bloco" Type="ParkingDBModel.Bloco" Multiplicity="1" />
-          <End Role="Vaga" Type="ParkingDBModel.Vaga" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bloco">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Vaga">
-              <PropertyRef Name="Id_Bloco" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Totem_CodigoQR">
-          <End Role="CodigoQR" Type="ParkingDBModel.CodigoQR" Multiplicity="1" />
-          <End Role="Totem" Type="ParkingDBModel.Totem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CodigoQR">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Totem">
-              <PropertyRef Name="Id_CodigoQR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mapa_Vaga_Mapa">
-          <End Role="Mapa" Type="ParkingDBModel.Mapa" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Mapa_Vaga" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mapa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mapa_Vaga">
-              <PropertyRef Name="Id_Mapa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mapa_Vaga_Totem">
-          <End Role="Totem" Type="ParkingDBModel.Totem" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Mapa_Vaga" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Totem">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mapa_Vaga">
-              <PropertyRef Name="Id_Totem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mapa_Vaga_Vaga">
-          <End Role="Vaga" Type="ParkingDBModel.Vaga" Multiplicity="1" />
-          <End Role="Mapa_Vaga" Type="ParkingDBModel.Mapa_Vaga" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Vaga">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mapa_Vaga">
-              <PropertyRef Name="Id_Vaga" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Carro">
           <Key>
             <PropertyRef Name="Id" />
@@ -473,6 +354,123 @@
           <Property Type="String" Name="Sexo" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Cliente_Carro" FromRole="Cliente" ToRole="Carro" />
         </EntityType>
+        <EntityType Name="Mapa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descricao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Imagem" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Caminho_Mapa" Relationship="ParkingDBModel.FK_Caminho_Mapa_Mapa" FromRole="Mapa" ToRole="Caminho_Mapa" />
+        </EntityType>
+        <EntityType Name="Totem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_Andar" Nullable="false" />
+          <Property Type="String" Name="Localizacao" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Andar" Relationship="ParkingDBModel.FK_Totem_Andar" FromRole="Totem" ToRole="Andar" />
+          <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Mapa_Vaga_Totem" FromRole="Totem" ToRole="Caminho" />
+        </EntityType>
+        <EntityType Name="Vaga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_Bloco" Nullable="false" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Situacao" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Id_Carro" />
+          <Property Type="DateTime" Name="HoraReserva" Precision="3" />
+          <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Vaga" ToRole="Bloco" />
+          <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Caminho" />
+          <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
+        </EntityType>
+        <Association Name="FK_Bloco_Andar">
+          <End Type="ParkingDBModel.Andar" Role="Andar" Multiplicity="1" />
+          <End Type="ParkingDBModel.Bloco" Role="Bloco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Andar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bloco">
+              <PropertyRef Name="Id_Andar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Totem_Andar">
+          <End Type="ParkingDBModel.Andar" Role="Andar" Multiplicity="1" />
+          <End Type="ParkingDBModel.Totem" Role="Totem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Andar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Totem">
+              <PropertyRef Name="Id_Andar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaga_Bloco">
+          <End Type="ParkingDBModel.Bloco" Role="Bloco" Multiplicity="1" />
+          <End Type="ParkingDBModel.Vaga" Role="Vaga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloco">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vaga">
+              <PropertyRef Name="Id_Bloco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caminho_Mapa_Caminho">
+          <End Type="ParkingDBModel.Caminho" Role="Caminho" Multiplicity="1" />
+          <End Type="ParkingDBModel.Caminho_Mapa" Role="Caminho_Mapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caminho">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho_Mapa">
+              <PropertyRef Name="Id_Caminho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mapa_Vaga_Totem">
+          <End Type="ParkingDBModel.Totem" Role="Totem" Multiplicity="1" />
+          <End Type="ParkingDBModel.Caminho" Role="Caminho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Totem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho">
+              <PropertyRef Name="Id_Totem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mapa_Vaga_Vaga">
+          <End Type="ParkingDBModel.Vaga" Role="Vaga" Multiplicity="1" />
+          <End Type="ParkingDBModel.Caminho" Role="Caminho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaga">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho">
+              <PropertyRef Name="Id_Vaga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caminho_Mapa_Mapa">
+          <End Type="ParkingDBModel.Mapa" Role="Mapa" Multiplicity="1" />
+          <End Type="ParkingDBModel.Caminho_Mapa" Role="Caminho_Mapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mapa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caminho_Mapa">
+              <PropertyRef Name="Id_Mapa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cliente_Carro">
           <End Type="ParkingDBModel.Cliente" Role="Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -499,7 +497,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -508,66 +506,35 @@
           <EntitySetMapping Name="Andar">
             <EntityTypeMapping TypeName="ParkingDBModel.Andar">
               <MappingFragment StoreEntitySet="Andar">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bloco">
             <EntityTypeMapping TypeName="ParkingDBModel.Bloco">
               <MappingFragment StoreEntitySet="Bloco">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Id_Andar" ColumnName="Id_Andar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CodigoQR">
-            <EntityTypeMapping TypeName="ParkingDBModel.CodigoQR">
-              <MappingFragment StoreEntitySet="CodigoQR">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Mapa">
-            <EntityTypeMapping TypeName="ParkingDBModel.Mapa">
-              <MappingFragment StoreEntitySet="Mapa">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Mapa_Vaga">
-            <EntityTypeMapping TypeName="ParkingDBModel.Mapa_Vaga">
-              <MappingFragment StoreEntitySet="Mapa_Vaga">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_Vaga" ColumnName="Id_Vaga" />
+          <EntitySetMapping Name="Caminho">
+            <EntityTypeMapping TypeName="ParkingDBModel.Caminho">
+              <MappingFragment StoreEntitySet="Caminho">
                 <ScalarProperty Name="Id_Totem" ColumnName="Id_Totem" />
+                <ScalarProperty Name="Id_Vaga" ColumnName="Id_Vaga" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Caminho_Mapa">
+            <EntityTypeMapping TypeName="ParkingDBModel.Caminho_Mapa">
+              <MappingFragment StoreEntitySet="Caminho_Mapa">
                 <ScalarProperty Name="Id_Mapa" ColumnName="Id_Mapa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Totem">
-            <EntityTypeMapping TypeName="ParkingDBModel.Totem">
-              <MappingFragment StoreEntitySet="Totem">
+                <ScalarProperty Name="Id_Caminho" ColumnName="Id_Caminho" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_Andar" ColumnName="Id_Andar" />
-                <ScalarProperty Name="Id_CodigoQR" ColumnName="Id_CodigoQR" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Vaga">
-            <EntityTypeMapping TypeName="ParkingDBModel.Vaga">
-              <MappingFragment StoreEntitySet="Vaga">
-                <ScalarProperty Name="HoraReserva" ColumnName="HoraReserva" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Id_Bloco" ColumnName="Id_Bloco" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Situacao" ColumnName="Situacao" />
-                <ScalarProperty Name="Id_Carro" ColumnName="Id_Carro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -593,7 +560,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Mapa">
+            <EntityTypeMapping TypeName="ParkingDBModel.Mapa">
+              <MappingFragment StoreEntitySet="Mapa">
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Totem">
+            <EntityTypeMapping TypeName="ParkingDBModel.Totem">
+              <MappingFragment StoreEntitySet="Totem">
+                <ScalarProperty Name="Localizacao" ColumnName="Localizacao" />
+                <ScalarProperty Name="Id_Andar" ColumnName="Id_Andar" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaga">
+            <EntityTypeMapping TypeName="ParkingDBModel.Vaga">
+              <MappingFragment StoreEntitySet="Vaga">
+                <ScalarProperty Name="HoraReserva" ColumnName="HoraReserva" />
+                <ScalarProperty Name="Id_Carro" ColumnName="Id_Carro" />
+                <ScalarProperty Name="Situacao" ColumnName="Situacao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id_Bloco" ColumnName="Id_Bloco" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
