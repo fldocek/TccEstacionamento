@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -136,8 +138,29 @@ namespace ParkingService
 
         public dtoCaminho LocalizarCarro(int Id_Totem, int Id_Carro)
         {
-            throw new NotImplementedException();
+            var caminho = (from C in ct.Caminho
+                           where C.Id_Totem == Id_Totem && C.Vaga.Id_Carro == Id_Carro
+                           select C).SingleOrDefault();
 
+            if (caminho == null)
+            {
+                return null;
+            }
+
+            dtoCaminho dto = new dtoCaminho();
+
+            foreach (var mapa in caminho.Caminho_Mapa)
+            {
+                Bitmap bmp;
+                using (var ms = new MemoryStream(mapa.Mapa.Imagem))
+                {
+                    bmp = new Bitmap(ms);
+                }
+
+                dto.ListaImagens.Add(bmp);
+            }
+
+            return dto;
             //TODO: Log LocalizarCarro (guardar totem pesquisado)
         }
 

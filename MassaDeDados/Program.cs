@@ -21,8 +21,8 @@ namespace MassaDeDados
                 ParkingDBEntities ct = new ParkingDBEntities();
 
                 //GerarVagas(ct);
-                //GerarClientes(ct);
-                AjustarCPF(ct);
+                GerarClientes(ct);
+                //AjustarCPF(ct);
 
                 Console.WriteLine("Salvando no Banco de Dados...");
 
@@ -124,6 +124,11 @@ namespace MassaDeDados
             foreach (var E in ct.Cliente.ToList())
             {
                 ct.Cliente.Remove(E);
+            }
+
+            foreach (var E in ct.Tag.ToList())
+            {
+                ct.Tag.Remove(E);
             }
 
             Console.WriteLine("Criando Registros Novos...");
@@ -538,6 +543,8 @@ namespace MassaDeDados
                 cliente.Nome = Nomes[N] + " " + SobreNomes[SN];
                 cliente.Sexo = ((i % 2) == 0)? "M" : "F";
 
+                cliente.CPF = GerarCpf();
+
                 cliente.Data_Cadastrado = DateTime.Now.AddDays((-1) * diaCadastro);
                 cliente.Data_Nascimento = DateTime.Now.AddDays((-1) * diaNascimento).AddYears((-1) * anoNascimento);
 
@@ -551,6 +558,11 @@ namespace MassaDeDados
 
                     carro.Placa = GerarPlaca();
                     carro.Marca = Marcas[M];
+
+                    Tag t1 = new Tag();
+                    t1.Codigo = Guid.NewGuid().ToString();
+
+                    carro.Tag = t1;
 
                     cliente.Carro.Add(carro);
 

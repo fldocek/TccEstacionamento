@@ -34,5 +34,6 @@ namespace Dados
         public DbSet<Mapa> Mapa { get; set; }
         public DbSet<Totem> Totem { get; set; }
         public DbSet<Vaga> Vaga { get; set; }
+        public DbSet<Tag> Tag { get; set; }
     }
 }

@@ -84,6 +84,9 @@
       <DependentUpon>ParkingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>ParkingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Totem.cs">
       <DependentUpon>ParkingModel.tt</DependentUpon>
     </Compile>
