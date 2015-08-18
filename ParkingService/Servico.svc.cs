@@ -32,7 +32,7 @@ namespace ParkingService
                              QtdVagas = (from B in A.Bloco
                                          from V in B.Vaga
                                          select V).Count(),
-                             QtdLive = (from B in A.Bloco
+                             QtdLivre = (from B in A.Bloco
                                         from V in B.Vaga
                                         where V.Situacao == SITUACAO_LIVRE
                                         select V).Count()
@@ -50,7 +50,7 @@ namespace ParkingService
                              Id = B.Id,
                              Nome = B.Nome,
                              QtdVagas = B.Vaga.Count(),
-                             QtdLive = (from V in B.Vaga
+                             QtdLivre = (from V in B.Vaga
                                         where V.Situacao == SITUACAO_LIVRE
                                         select V).Count()
                          });

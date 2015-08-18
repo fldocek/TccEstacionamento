@@ -22,7 +22,7 @@ namespace ParkingService
         public int QtdVagas { get; set; }
 
         [DataMember]
-        public int QtdLive { get; set; }
+        public int QtdLivre { get; set; }
 
     }
 }

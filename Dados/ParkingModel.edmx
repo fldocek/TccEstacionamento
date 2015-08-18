@@ -540,7 +540,7 @@
           <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Carro_Tag" FromRole="Tag" ToRole="Carro" />
         </EntityType>
         <Association Name="FK_Carro_Tag">
-          <End Type="ParkingDBModel.Tag" Role="Tag" Multiplicity="0..1" />
+          <End Type="ParkingDBModel.Tag" Role="Tag" Multiplicity="1" />
           <End Type="ParkingDBModel.Carro" Role="Carro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
