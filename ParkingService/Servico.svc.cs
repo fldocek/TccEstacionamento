@@ -66,6 +66,7 @@ namespace ParkingService
                          {
                              Id = V.Id,
                              Nome = V.Nome,
+                             Deficiente = V.Deficiente,
                              Disponivel = (V.Situacao == SITUACAO_LIVRE)
                          });
 

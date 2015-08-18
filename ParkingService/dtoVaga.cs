@@ -19,6 +19,9 @@ namespace ParkingService
         public string Nome { get; set; }
 
         [DataMember]
+        public bool Deficiente { get; set; }
+
+        [DataMember]
         public bool Disponivel { get; set; }
 
     }

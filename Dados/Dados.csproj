@@ -46,28 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Andar.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Bloco.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Caminho.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Caminho_Mapa.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Carro.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Cliente.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="eSituacaoVaga.cs" />
-    <Compile Include="Mapa.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ParkingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,15 +63,6 @@
       <DependentUpon>ParkingModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tag.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Totem.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vaga.cs">
-      <DependentUpon>ParkingModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ParkingModel.edmx">

@@ -94,7 +94,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Id_Cliente" Type="int" Nullable="false" />
-          <Property Name="Id_Tag" Type="int" />
+          <Property Name="Id_Tag" Type="int" Nullable="false" />
           <Property Name="Marca" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Placa" Type="char" Nullable="false" MaxLength="8" />
         </EntityType>
@@ -139,6 +139,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Id_Bloco" Type="int" Nullable="false" />
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Deficiente" Type="bit" Nullable="false" />
           <Property Name="Situacao" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Id_Carro" Type="int" />
           <Property Name="HoraReserva" Type="datetime" />
@@ -180,7 +181,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Carro_Tag">
-          <End Role="Tag" Type="ParkingDBModel.Store.Tag" Multiplicity="0..1" />
+          <End Role="Tag" Type="ParkingDBModel.Store.Tag" Multiplicity="1" />
           <End Role="Carro" Type="ParkingDBModel.Store.Carro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
@@ -371,7 +372,7 @@
           <Property Type="String" Name="Placa" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Cliente" Relationship="ParkingDBModel.FK_Cliente_Carro" FromRole="Carro" ToRole="Cliente" />
           <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Carro" ToRole="Vaga" />
-          <Property Type="Int32" Name="Id_Tag" />
+          <Property Type="Int32" Name="Id_Tag" Nullable="false" />
           <NavigationProperty Name="Tag" Relationship="ParkingDBModel.FK_Carro_Tag" FromRole="Carro" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Cliente">
@@ -418,6 +419,7 @@
           <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Vaga" ToRole="Bloco" />
           <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Caminho" />
           <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
+          <Property Type="Boolean" Name="Deficiente" Nullable="false" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Type="ParkingDBModel.Andar" Role="Andar" Multiplicity="1" />
@@ -634,6 +636,7 @@
           <EntitySetMapping Name="Vaga">
             <EntityTypeMapping TypeName="ParkingDBModel.Vaga">
               <MappingFragment StoreEntitySet="Vaga">
+                <ScalarProperty Name="Deficiente" ColumnName="Deficiente" />
                 <ScalarProperty Name="HoraReserva" ColumnName="HoraReserva" />
                 <ScalarProperty Name="Id_Carro" ColumnName="Id_Carro" />
                 <ScalarProperty Name="Situacao" ColumnName="Situacao" />
