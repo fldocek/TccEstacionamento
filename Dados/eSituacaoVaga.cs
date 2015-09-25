@@ -10,8 +10,7 @@ namespace Dados
     {
         Livre,
         Reservada,
-        Ocupada,
-        Indisponível
+        Ocupada
     }
 }
  

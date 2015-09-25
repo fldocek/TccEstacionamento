@@ -7,18 +7,18 @@
       <Diagram DiagramId="f3622fbf64ed473fb0c67fc0c74e84ba" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="ParkingDBModel.Andar" Width="1.5" PointX="0.75" PointY="2.375" />
         <EntityTypeShape EntityType="ParkingDBModel.Bloco" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="ParkingDBModel.Caminho" Width="1.5" PointX="7.5" PointY="1.875" />
+        <EntityTypeShape EntityType="ParkingDBModel.Caminho" Width="1.5" PointX="7.5" PointY="2.5" />
         <EntityTypeShape EntityType="ParkingDBModel.Caminho_Mapa" Width="1.5" PointX="9.75" PointY="2" />
         <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="3" PointY="6.75" />
         <EntityTypeShape EntityType="ParkingDBModel.Cliente" Width="1.5" PointX="0.75" PointY="6.625" />
-        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="7.5" PointY="4.625" />
+        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="7.5" PointY="5.125" />
         <EntityTypeShape EntityType="ParkingDBModel.Totem" Width="1.5" PointX="3" PointY="3.625" />
-        <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.25" PointY="0.5" />
+        <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.375" PointY="0.5" />
         <AssociationConnector Association="ParkingDBModel.FK_Bloco_Andar" />
         <AssociationConnector Association="ParkingDBModel.FK_Totem_Andar" />
         <AssociationConnector Association="ParkingDBModel.FK_Vaga_Bloco" />
         <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Caminho" />
-        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" />
+        <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" ></AssociationConnector>
         <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" />
         <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Mapa" />
         <AssociationConnector Association="ParkingDBModel.FK_Cliente_Carro" />

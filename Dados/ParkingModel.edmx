@@ -140,9 +140,12 @@
           <Property Name="Id_Bloco" Type="int" Nullable="false" />
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Deficiente" Type="bit" Nullable="false" />
+          <Property Name="Bloqueada" Type="bit" Nullable="false" />
           <Property Name="Situacao" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Id_Carro" Type="int" />
           <Property Name="HoraReserva" Type="datetime" />
+          <Property Name="EnderecoSensor" Type="varchar" MaxLength="16" />
+          <Property Name="AguardandoSinalizacao" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Role="Andar" Type="ParkingDBModel.Store.Andar" Multiplicity="1" />
@@ -420,6 +423,9 @@
           <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Caminho" />
           <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
           <Property Type="Boolean" Name="Deficiente" Nullable="false" />
+          <Property Type="String" Name="EnderecoSensor" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="AguardandoSinalizacao" Nullable="false" />
+          <Property Type="Boolean" Name="Bloqueada" Nullable="false" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Type="ParkingDBModel.Andar" Role="Andar" Multiplicity="1" />
@@ -636,6 +642,9 @@
           <EntitySetMapping Name="Vaga">
             <EntityTypeMapping TypeName="ParkingDBModel.Vaga">
               <MappingFragment StoreEntitySet="Vaga">
+                <ScalarProperty Name="Bloqueada" ColumnName="Bloqueada" />
+                <ScalarProperty Name="AguardandoSinalizacao" ColumnName="AguardandoSinalizacao" />
+                <ScalarProperty Name="EnderecoSensor" ColumnName="EnderecoSensor" />
                 <ScalarProperty Name="Deficiente" ColumnName="Deficiente" />
                 <ScalarProperty Name="HoraReserva" ColumnName="HoraReserva" />
                 <ScalarProperty Name="Id_Carro" ColumnName="Id_Carro" />

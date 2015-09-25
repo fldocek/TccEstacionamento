@@ -133,6 +133,7 @@
     <Compile Include="Controllers\AndarController.cs" />
     <Compile Include="Controllers\BlocoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VagaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +225,11 @@
     <Content Include="Views\Bloco\Create.cshtml" />
     <Content Include="Views\Bloco\Edit.cshtml" />
     <Content Include="Views\Bloco\Delete.cshtml" />
+    <Content Include="Views\Vaga\Index.cshtml" />
+    <Content Include="Views\Vaga\Create.cshtml" />
+    <Content Include="Views\Vaga\Delete.cshtml" />
+    <Content Include="Views\Vaga\Details.cshtml" />
+    <Content Include="Views\Vaga\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -257,7 +263,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>1935</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:2511/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

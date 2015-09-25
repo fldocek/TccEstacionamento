@@ -38,13 +38,13 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        bool ReservarVaga(int Id_Vaga, int Id_Carro);
+        void ReservarVaga(int Id_Vaga, int Id_Carro);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        bool CancelarReserva(int Id_Vaga, int Id_Carro);
+        void CancelarReserva(int Id_Vaga, int Id_Carro);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

@@ -67,13 +67,13 @@ namespace ParkingService
                              Id = V.Id,
                              Nome = V.Nome,
                              Deficiente = V.Deficiente,
-                             Disponivel = (V.Situacao == SITUACAO_LIVRE)
+                             Disponivel = (V.Bloqueada == false && V.Situacao == SITUACAO_LIVRE)
                          });
 
             return lista;
         }
 
-        public bool ReservarVaga(int Id_Vaga, int Id_Carro)
+        public void ReservarVaga(int Id_Vaga, int Id_Carro)
         {
             Vaga vaga = ConsultarVaga(Id_Vaga);
 
@@ -88,12 +88,10 @@ namespace ParkingService
 
             ct.SaveChanges();
 
-            return true;
-
             //TODO: Log ReservarVaga
         }
 
-        public bool CancelarReserva(int Id_Vaga, int Id_Carro)
+        public void CancelarReserva(int Id_Vaga, int Id_Carro)
         {
             Vaga vaga = ConsultarVaga(Id_Vaga);
 
@@ -112,8 +110,6 @@ namespace ParkingService
             vaga.HoraReserva = null;
 
             ct.SaveChanges();
-
-            return true;
 
             //TODO: Log CancelarReserva
         }

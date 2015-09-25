@@ -26,6 +26,9 @@ namespace Dados
         public Nullable<int> Id_Carro { get; set; }
         public Nullable<System.DateTime> HoraReserva { get; set; }
         public bool Deficiente { get; set; }
+        public string EnderecoSensor { get; set; }
+        public bool AguardandoSinalizacao { get; set; }
+        public bool Bloqueada { get; set; }
     
         public virtual Bloco Bloco { get; set; }
         public virtual ICollection<Caminho> Caminho { get; set; }

@@ -1,0 +1,102 @@
+﻿@model Dados.Vaga
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Vaga</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Id_Bloco)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Id_Bloco)
+            @Html.ValidationMessageFor(model => model.Id_Bloco)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Situacao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Situacao)
+            @Html.ValidationMessageFor(model => model.Situacao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Id_Carro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Id_Carro)
+            @Html.ValidationMessageFor(model => model.Id_Carro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoraReserva)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoraReserva)
+            @Html.ValidationMessageFor(model => model.HoraReserva)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Deficiente)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Deficiente)
+            @Html.ValidationMessageFor(model => model.Deficiente)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EnderecoSensor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EnderecoSensor)
+            @Html.ValidationMessageFor(model => model.EnderecoSensor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AguardandoSinalizacao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AguardandoSinalizacao)
+            @Html.ValidationMessageFor(model => model.AguardandoSinalizacao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Bloqueada)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Bloqueada)
+            @Html.ValidationMessageFor(model => model.Bloqueada)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

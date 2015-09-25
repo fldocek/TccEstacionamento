@@ -1,0 +1,78 @@
+﻿@model Dados.Vaga
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Vaga</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Id_Bloco)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Id_Bloco)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Situacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Situacao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Id_Carro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Id_Carro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HoraReserva)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoraReserva)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Deficiente)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Deficiente)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EnderecoSensor)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EnderecoSensor)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AguardandoSinalizacao)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AguardandoSinalizacao)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Bloqueada)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Bloqueada)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -27,13 +27,13 @@
             @Html.LabelFor(model => model.Id_Andar, "Andar")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Id_Andar", String.Empty)
+            @Html.DropDownList("Id_Andar")
             @Html.ValidationMessageFor(model => model.Id_Andar)
         </div>
-
-        <p>
+        
+        <div class="editor-field">
             <input type="submit" value="Save" />
-        </p>
+        </div>
     </fieldset>
 }
 
