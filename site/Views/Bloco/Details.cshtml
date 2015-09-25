@@ -4,26 +4,84 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Bloco</h2>
 
-<fieldset>
-    <legend>Bloco</legend>
+<div class="row">
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
+    <div class="col-lg-3">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index", "Andar", null, null)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Andar.Nome)
+</div>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <label>
+            Nome
+        </label>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Andar.Nome)
+
+    <div class="col-lg-3">
+
+        <label>
+            Andar
+        </label>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Andar.Nome)
+        </div>
+
     </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    
+</div>
+
+<br />
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Vaga</th>
+
+                    <th>Situação</th>
+
+                    <th>Editar</th>
+
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var vaga in Model.Vaga)
+                {
+        
+                    <tr>
+                        <td>@vaga.Nome</td>
+
+                        <td>@vaga.Situacao</td>
+
+                        <td>@Html.ActionLink("Editar", "Edit", "Vaga", new { id = vaga.Id }, null)</td>
+
+                        <td>@Html.ActionLink("Excluir", "Delete", "Vaga", new { id = vaga.Id }, null)</td>
+
+                    </tr>
+        
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

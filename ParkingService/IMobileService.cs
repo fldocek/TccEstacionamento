@@ -10,7 +10,7 @@ namespace ParkingService
 {
 
     [ServiceContract]
-    public interface IServico
+    public interface IMobileService
     {
 
         //Fluxo Reservar Vaga
@@ -39,6 +39,12 @@ namespace ParkingService
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         bool ReservarVaga(int Id_Vaga, int Id_Carro);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        bool CancelarReserva(int Id_Vaga, int Id_Carro);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

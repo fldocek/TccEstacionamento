@@ -4,33 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>@Html.DisplayNameFor(model => model.Nome)</h2>
+<h2>Andares</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
-@foreach (var item in Model)
-{
+<div class="col-xs-5">
+
+    @foreach (var andar in Model)
+    {
     
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                @Html.DisplayFor(modelItem => item.Nome)
-                <span class="badge">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                </span>
-                <span class="badge">
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-                </span>
-                <span class="badge">
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </span>
-            </h3>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    @Html.DisplayFor(modelItem => andar.Nome)
+                    <span class="badge right">
+                        @Html.ActionLink("Edit", "Edit", new { id = andar.Id })
+                    </span>
+                    <span class="badge right">
+                        @Html.ActionLink("Delete", "Delete", new { id = andar.Id })
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                
+                <h3>Blocos</h3>
+
+                @foreach (var bloco in andar.Bloco)
+	            {
+                    
+                    <div class="col-lg-3 text-center">
+                        <a href="@Url.Action("Details", "Bloco", new { id = bloco.Id })">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        @Html.DisplayFor(modelItem => bloco.Nome)
+                                    </h3>
+                                </div>
+                            </div> 
+                        </a>
+                    </div>
+	            }
+
+            </div>
         </div>
-        <div class="panel-body">
-            Panel content
-        </div>
+
+    }
+
+    <div class="panel-body" style="border-style: dashed; border-radius: 3px; text-align: center;">
+        <a href="@Url.Action("Create")">
+            <i class="fa fa-plus fa-3"></i>
+            <strong> Criar Novo </strong> 
+        </a>
     </div>
 
-}
+</div>

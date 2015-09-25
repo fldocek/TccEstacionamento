@@ -11,7 +11,7 @@ using Dados;
 
 namespace ParkingService
 {
-    public class Servico : IServico
+    public class MobileService : IMobileService
     {
         ParkingDBEntities ct = new ParkingDBEntities();
 
@@ -91,6 +91,31 @@ namespace ParkingService
             return true;
 
             //TODO: Log ReservarVaga
+        }
+
+        public bool CancelarReserva(int Id_Vaga, int Id_Carro)
+        {
+            Vaga vaga = ConsultarVaga(Id_Vaga);
+
+            if (vaga.Situacao != eSituacaoVaga.Reservada.ToString())
+            {
+                throw new exVagaJaReservada(vaga.Nome);
+            }
+
+            if (vaga.Id_Carro != Id_Carro)
+            {
+                throw new exVagaJaReservada(vaga.Nome);
+            }
+
+            vaga.Situacao = eSituacaoVaga.Reservada.ToString();
+            vaga.Id_Carro = null;
+            vaga.HoraReserva = null;
+
+            ct.SaveChanges();
+
+            return true;
+
+            //TODO: Log CancelarReserva
         }
 
         public IEnumerable<dtoCarro> ListarCarros(string CPF)

@@ -22,4 +22,16 @@ namespace ParkingService
         public exVagaJaReservada(string NomeVaga) :
             base("A Vaga " + NomeVaga + " já se encontra reservada.") { }
     }
+
+    public class exVagaNaoReservada : ApplicationException
+    {
+        public exVagaNaoReservada(string NomeVaga) :
+            base("A Vaga " + NomeVaga + " não se encontra reservada.") { }
+    }
+
+    public class exCancelamentoNaoPermitido : ApplicationException
+    {
+        public exCancelamentoNaoPermitido(string NomeVaga) :
+            base("O cancelamento da vaga " + NomeVaga + " não permitido.") { }
+    }
 }

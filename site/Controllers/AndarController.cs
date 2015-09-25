@@ -22,19 +22,6 @@ namespace site.Controllers
         }
 
         //
-        // GET: /Andar/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Andar andar = db.Andar.Find(id);
-            if (andar == null)
-            {
-                return HttpNotFound();
-            }
-            return View(andar);
-        }
-
-        //
         // GET: /Andar/Create
 
         public ActionResult Create()
