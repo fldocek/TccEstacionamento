@@ -76,7 +76,7 @@ namespace ParkingService
             return listaSinalizar;
         }
 
-        public void OcuparVagar(int Id_Vaga, string Tag)
+        public void OcuparVaga(int Id_Vaga, string Tag)
         {
             Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 

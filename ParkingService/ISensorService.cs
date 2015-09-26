@@ -22,6 +22,13 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void OcuparVagar(int Id_Vaga, string Tag);
+        void OcuparVaga(int Id_Vaga, string Tag);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        void LiberarVaga(int Id_Vaga);
+        
     }
 }
