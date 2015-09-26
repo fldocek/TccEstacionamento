@@ -75,5 +75,22 @@ namespace ParkingService
 
             return listaSinalizar;
         }
+
+        public void OcuparVagar(int Id_Vaga, string Tag)
+        {
+            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
+
+            vaga.Situacao = eSituacaoVaga.Ocupada.ToString();
+
+            if (!string.IsNullOrEmpty(Tag))
+            {
+                Carro carro = Util.ConsultarCarroPorTag(Tag, ct);
+
+                vaga.Id_Carro = carro.Id;
+            }
+
+            ct.SaveChanges();
+        }
+
     }
 }

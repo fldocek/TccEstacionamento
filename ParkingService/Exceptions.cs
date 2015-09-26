@@ -34,4 +34,11 @@ namespace ParkingService
         public exCancelamentoNaoPermitido(string NomeVaga) :
             base("O cancelamento da vaga " + NomeVaga + " não permitido.") { }
     }
+
+    public class exCarroNaoEncontrado : ApplicationException
+    {
+        public exCarroNaoEncontrado(string Tag) :
+            base("Não foi encontrado nenhum carro com a Tag \"" + Tag + "\".") { }
+    }
+
 }

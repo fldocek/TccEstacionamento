@@ -75,7 +75,7 @@ namespace ParkingService
 
         public void ReservarVaga(int Id_Vaga, int Id_Carro)
         {
-            Vaga vaga = ConsultarVaga(Id_Vaga);
+            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 
             if (vaga.Situacao == eSituacaoVaga.Reservada.ToString())
             {
@@ -94,7 +94,7 @@ namespace ParkingService
 
         public void CancelarReserva(int Id_Vaga, int Id_Carro)
         {
-            Vaga vaga = ConsultarVaga(Id_Vaga);
+            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 
             if (vaga.Situacao != eSituacaoVaga.Reservada.ToString())
             {
@@ -118,7 +118,7 @@ namespace ParkingService
 
         public IEnumerable<dtoCarro> ListarCarros(string CPF)
         {
-            Cliente cliente = ConsultarCliente(CPF);
+            Cliente cliente = Util.ConsultarCliente(CPF, ct);
 
             var ListaCarros = (from Ca in cliente.Carro
                                select new dtoCarro
@@ -137,7 +137,7 @@ namespace ParkingService
 
         public dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro)
         {
-            Vaga vaga = ConsultarVaga(Id_Vaga);
+            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 
             dtoSituacaoVaga situacao = new dtoSituacaoVaga();
             situacao.VagaAindaReservada = false;
@@ -186,36 +186,6 @@ namespace ParkingService
 
             return dto;
             //TODO: Log LocalizarCarro (guardar totem pesquisado)
-        }
-
-        #endregion
-
-        #region Métodos Internos
-
-        private Cliente ConsultarCliente(string CPF)
-        {
-            CPF = Util.RetirarFormatacaoCPF(CPF);
-
-            Cliente cliente = (from C in ct.Cliente where C.CPF == CPF select C).SingleOrDefault();
-
-            if (cliente == null)
-            {
-                throw new exClienteNaoEncontrado(CPF);
-            }
-
-            return cliente;
-        }
-
-        private Vaga ConsultarVaga(int Id_Vaga)
-        {
-            Vaga vaga = (from V in ct.Vaga where V.Id == Id_Vaga select V).SingleOrDefault();
-
-            if (vaga == null)
-            {
-                throw new exVagaNaoEncontrada(Id_Vaga);
-            }
-
-            return vaga;
         }
 
         #endregion
