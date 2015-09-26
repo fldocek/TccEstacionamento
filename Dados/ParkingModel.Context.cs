@@ -29,11 +29,11 @@ namespace Dados
         public DbSet<Bloco> Bloco { get; set; }
         public DbSet<Caminho> Caminho { get; set; }
         public DbSet<Caminho_Mapa> Caminho_Mapa { get; set; }
-        public DbSet<Carro> Carro { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Mapa> Mapa { get; set; }
         public DbSet<Totem> Totem { get; set; }
         public DbSet<Vaga> Vaga { get; set; }
-        public DbSet<Tag> Tag { get; set; }
+        public DbSet<Carro> Carro { get; set; }
+        public DbSet<Configuracao> Configuracao { get; set; }
     }
 }

@@ -12,16 +12,10 @@ namespace Dados
     using System;
     using System.Collections.Generic;
     
-    public partial class Tag
+    public partial class Configuracao
     {
-        public Tag()
-        {
-            this.Carro = new HashSet<Carro>();
-        }
-    
-        public int Id { get; set; }
-        public string Codigo { get; set; }
-    
-        public virtual ICollection<Carro> Carro { get; set; }
+        public string Valor { get; set; }
+        public string Nome { get; set; }
+        public string Chave { get; set; }
     }
 }

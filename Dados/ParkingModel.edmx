@@ -12,8 +12,14 @@
           <EntitySet Name="Caminho_Mapa" EntityType="ParkingDBModel.Store.Caminho_Mapa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Carro" EntityType="ParkingDBModel.Store.Carro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cliente" EntityType="ParkingDBModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Store.Configuracao" store:Type="Tables" store:Schema="dbo" store:Name="Configuracao">
+            <DefiningQuery>SELECT 
+      [Configuracao].[Chave] AS [Chave], 
+      [Configuracao].[Nome] AS [Nome], 
+      [Configuracao].[Valor] AS [Valor]
+      FROM [dbo].[Configuracao] AS [Configuracao]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Mapa" EntityType="ParkingDBModel.Store.Mapa" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Tag" EntityType="ParkingDBModel.Store.Tag" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Totem" EntityType="ParkingDBModel.Store.Totem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vaga" EntityType="ParkingDBModel.Store.Vaga" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Bloco_Andar" Association="ParkingDBModel.Store.FK_Bloco_Andar">
@@ -27,10 +33,6 @@
           <AssociationSet Name="FK_Caminho_Mapa_Mapa" Association="ParkingDBModel.Store.FK_Caminho_Mapa_Mapa">
             <End Role="Mapa" EntitySet="Mapa" />
             <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Carro_Tag" Association="ParkingDBModel.Store.FK_Carro_Tag">
-            <End Role="Tag" EntitySet="Tag" />
-            <End Role="Carro" EntitySet="Carro" />
           </AssociationSet>
           <AssociationSet Name="FK_Cliente_Carro" Association="ParkingDBModel.Store.FK_Cliente_Carro">
             <End Role="Cliente" EntitySet="Cliente" />
@@ -94,9 +96,9 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Id_Cliente" Type="int" Nullable="false" />
-          <Property Name="Id_Tag" Type="int" Nullable="false" />
           <Property Name="Marca" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Placa" Type="char" Nullable="false" MaxLength="8" />
+          <Property Name="Tag" Type="varchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -109,6 +111,19 @@
           <Property Name="Data_Cadastrado" Type="date" Nullable="false" />
           <Property Name="Sexo" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'ParkingDB.dbo.Configuracao' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Configuracao">
+          <Key>
+            <PropertyRef Name="Chave" />
+            <PropertyRef Name="Nome" />
+            <PropertyRef Name="Valor" />
+          </Key>
+          <Property Name="Chave" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Valor" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Mapa">
           <Key>
             <PropertyRef Name="Id" />
@@ -116,13 +131,6 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Imagem" Type="image" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Codigo" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Totem">
           <Key>
@@ -180,18 +188,6 @@
             </Principal>
             <Dependent Role="Caminho_Mapa">
               <PropertyRef Name="Id_Mapa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Carro_Tag">
-          <End Role="Tag" Type="ParkingDBModel.Store.Tag" Multiplicity="1" />
-          <End Role="Carro" Type="ParkingDBModel.Store.Carro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tag">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Carro">
-              <PropertyRef Name="Id_Tag" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,7 +274,6 @@
           <EntitySet Name="Bloco" EntityType="ParkingDBModel.Bloco" />
           <EntitySet Name="Caminho" EntityType="ParkingDBModel.Caminho" />
           <EntitySet Name="Caminho_Mapa" EntityType="ParkingDBModel.Caminho_Mapa" />
-          <EntitySet Name="Carro" EntityType="ParkingDBModel.Carro" />
           <EntitySet Name="Cliente" EntityType="ParkingDBModel.Cliente" />
           <EntitySet Name="Mapa" EntityType="ParkingDBModel.Mapa" />
           <EntitySet Name="Totem" EntityType="ParkingDBModel.Totem" />
@@ -311,6 +306,8 @@
             <End Role="Mapa" EntitySet="Mapa" />
             <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
           </AssociationSet>
+          <EntitySet Name="Carro" EntityType="ParkingDBModel.Carro" />
+          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Configuracao" />
           <AssociationSet Name="FK_Cliente_Carro" Association="ParkingDBModel.FK_Cliente_Carro">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Carro" EntitySet="Carro" />
@@ -318,11 +315,6 @@
           <AssociationSet Name="FK_Vaga_Carro" Association="ParkingDBModel.FK_Vaga_Carro">
             <End Role="Carro" EntitySet="Carro" />
             <End Role="Vaga" EntitySet="Vaga" />
-          </AssociationSet>
-          <EntitySet Name="Tag" EntityType="ParkingDBModel.Tag" />
-          <AssociationSet Name="FK_Carro_Tag" Association="ParkingDBModel.FK_Carro_Tag">
-            <End Role="Tag" EntitySet="Tag" />
-            <End Role="Carro" EntitySet="Carro" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Andar">
@@ -364,19 +356,6 @@
           <Property Type="Int32" Name="Id_Mapa" Nullable="false" />
           <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Caminho_Mapa_Caminho" FromRole="Caminho_Mapa" ToRole="Caminho" />
           <NavigationProperty Name="Mapa" Relationship="ParkingDBModel.FK_Caminho_Mapa_Mapa" FromRole="Caminho_Mapa" ToRole="Mapa" />
-        </EntityType>
-        <EntityType Name="Carro">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="Id_Cliente" Nullable="false" />
-          <Property Type="String" Name="Marca" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Placa" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="ParkingDBModel.FK_Cliente_Carro" FromRole="Carro" ToRole="Cliente" />
-          <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Carro" ToRole="Vaga" />
-          <Property Type="Int32" Name="Id_Tag" Nullable="false" />
-          <NavigationProperty Name="Tag" Relationship="ParkingDBModel.FK_Carro_Tag" FromRole="Carro" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -421,11 +400,11 @@
           <Property Type="DateTime" Name="HoraReserva" Precision="3" />
           <NavigationProperty Name="Bloco" Relationship="ParkingDBModel.FK_Vaga_Bloco" FromRole="Vaga" ToRole="Bloco" />
           <NavigationProperty Name="Caminho" Relationship="ParkingDBModel.FK_Mapa_Vaga_Vaga" FromRole="Vaga" ToRole="Caminho" />
-          <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
           <Property Type="Boolean" Name="Deficiente" Nullable="false" />
           <Property Type="String" Name="EnderecoSensor" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="AguardandoSinalizacao" Nullable="false" />
           <Property Type="Boolean" Name="Bloqueada" Nullable="false" />
+          <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Vaga" ToRole="Carro" />
         </EntityType>
         <Association Name="FK_Bloco_Andar">
           <End Type="ParkingDBModel.Andar" Role="Andar" Multiplicity="1" />
@@ -511,6 +490,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Carro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Id_Cliente" Nullable="false" />
+          <Property Type="String" Name="Marca" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Placa" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Tag" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="ParkingDBModel.FK_Cliente_Carro" FromRole="Carro" ToRole="Cliente" />
+          <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Carro" ToRole="Vaga" />
+        </EntityType>
+        <EntityType Name="Configuracao">
+          <Key>
+            <PropertyRef Name="Valor" />
+            <PropertyRef Name="Nome" />
+            <PropertyRef Name="Chave" />
+          </Key>
+          <Property Type="String" Name="Valor" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Chave" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <Association Name="FK_Cliente_Carro">
           <End Type="ParkingDBModel.Cliente" Role="Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -534,26 +535,6 @@
             </Principal>
             <Dependent Role="Vaga">
               <PropertyRef Name="Id_Carro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Carro" Relationship="ParkingDBModel.FK_Carro_Tag" FromRole="Tag" ToRole="Carro" />
-        </EntityType>
-        <Association Name="FK_Carro_Tag">
-          <End Type="ParkingDBModel.Tag" Role="Tag" Multiplicity="1" />
-          <End Type="ParkingDBModel.Carro" Role="Carro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tag">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Carro">
-              <PropertyRef Name="Id_Tag" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -594,17 +575,6 @@
               <MappingFragment StoreEntitySet="Caminho_Mapa">
                 <ScalarProperty Name="Id_Mapa" ColumnName="Id_Mapa" />
                 <ScalarProperty Name="Id_Caminho" ColumnName="Id_Caminho" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Carro">
-            <EntityTypeMapping TypeName="ParkingDBModel.Carro">
-              <MappingFragment StoreEntitySet="Carro">
-                <ScalarProperty Name="Id_Tag" ColumnName="Id_Tag" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -655,11 +625,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tag">
-            <EntityTypeMapping TypeName="ParkingDBModel.Tag">
-              <MappingFragment StoreEntitySet="Tag">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <EntitySetMapping Name="Carro">
+            <EntityTypeMapping TypeName="ParkingDBModel.Carro">
+              <MappingFragment StoreEntitySet="Carro">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configuracao">
+            <EntityTypeMapping TypeName="ParkingDBModel.Configuracao">
+              <MappingFragment StoreEntitySet="Configuracao">
+                <ScalarProperty Name="Chave" ColumnName="Chave" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

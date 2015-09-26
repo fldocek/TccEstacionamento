@@ -16,6 +16,6 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void DoWork();
+        IEnumerable<dtoVagaSinalizar> ListarVagasParaSinalizar();
     }
 }

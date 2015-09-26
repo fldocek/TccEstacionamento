@@ -23,10 +23,9 @@ namespace Dados
         public int Id_Cliente { get; set; }
         public string Marca { get; set; }
         public string Placa { get; set; }
-        public int Id_Tag { get; set; }
+        public string Tag { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual ICollection<Vaga> Vaga { get; set; }
-        public virtual Tag Tag { get; set; }
     }
 }

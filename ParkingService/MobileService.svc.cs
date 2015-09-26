@@ -85,6 +85,7 @@ namespace ParkingService
             vaga.Situacao = eSituacaoVaga.Reservada.ToString();
             vaga.Id_Carro = Id_Carro;
             vaga.HoraReserva = DateTime.Now;
+            vaga.AguardandoSinalizacao = true;
 
             ct.SaveChanges();
 
@@ -97,17 +98,18 @@ namespace ParkingService
 
             if (vaga.Situacao != eSituacaoVaga.Reservada.ToString())
             {
-                throw new exVagaJaReservada(vaga.Nome);
+                throw new exVagaNaoReservada(vaga.Nome);
             }
 
             if (vaga.Id_Carro != Id_Carro)
             {
-                throw new exVagaJaReservada(vaga.Nome);
+                throw new exCancelamentoNaoPermitido(vaga.Nome);
             }
 
-            vaga.Situacao = eSituacaoVaga.Reservada.ToString();
+            vaga.Situacao = eSituacaoVaga.Livre.ToString();
             vaga.Id_Carro = null;
             vaga.HoraReserva = null;
+            vaga.AguardandoSinalizacao = true;
 
             ct.SaveChanges();
 

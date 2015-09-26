@@ -1,18 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using System.Text;
+using Dados;
+using System.Data.Objects.SqlClient;
 
 namespace ParkingService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "SensorService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select SensorService.svc or SensorService.svc.cs at the Solution Explorer and start debugging.
     public class SensorService : ISensorService
     {
-        public void DoWork()
+
+        ParkingDBEntities ct = new ParkingDBEntities();
+
+        private string SITUACAO_RESERVADA
         {
+            get { return eSituacaoVaga.Reservada.ToString(); }
+        }
+
+        public IEnumerable<dtoVagaSinalizar> ListarVagasParaSinalizar()
+        {
+            // Consultar vagas que já passam do tempo de reserva 
+
+            int limiteReserva = ConfiguracaoSistema.TempoReserva(); // 2 horas de reserva
+
+            var listaReservadas = (from V in ct.Vaga
+                                   where V.Situacao == SITUACAO_RESERVADA &&
+                                         SqlFunctions.DateDiff("minute", V.HoraReserva, DateTime.Now) >= limiteReserva
+                                   select new {V.Nome, diff = V.HoraReserva});
+
+
+            // Consultar vagas para sinalizar
+
+            var listaVagas = (from V in ct.Vaga
+                              where V.AguardandoSinalizacao
+                              select V);
+
+            List<dtoVagaSinalizar> listaSinalizar = new List<dtoVagaSinalizar>();
+
+            foreach (var vaga in listaVagas)
+            {
+                dtoVagaSinalizar sinalizar = new dtoVagaSinalizar
+                {
+                    Id = vaga.Id,
+                    Situacao = vaga.Situacao,
+                    EnderecoSensor = vaga.EnderecoSensor,
+                    Deficiente = vaga.Deficiente
+                };
+
+                listaSinalizar.Add(sinalizar);
+
+                vaga.AguardandoSinalizacao = false;
+            }
+
+            return listaSinalizar;
         }
     }
 }
