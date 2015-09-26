@@ -28,11 +28,25 @@ namespace ParkingService
 
             int limiteReserva = ConfiguracaoSistema.TempoReserva(); // 2 horas de reserva
 
+            DateTime HoraAtual = DateTime.Now;
+
             var listaReservadas = (from V in ct.Vaga
                                    where V.Situacao == SITUACAO_RESERVADA &&
-                                         SqlFunctions.DateDiff("minute", V.HoraReserva, DateTime.Now) >= limiteReserva
-                                   select new {V.Nome, diff = V.HoraReserva});
+                                         SqlFunctions.DateDiff("minute", V.HoraReserva, HoraAtual) >= limiteReserva
+                                   select V);
 
+            foreach (var reservada in listaReservadas)
+            {
+                reservada.Situacao = eSituacaoVaga.Livre.ToString();
+                reservada.HoraReserva = null;
+                reservada.Carro = null;
+
+                reservada.AguardandoSinalizacao = true;
+
+                //LOG: vagas que já passam do tempo de reserva 
+            }
+            
+            ct.SaveChanges();
 
             // Consultar vagas para sinalizar
 
@@ -56,6 +70,8 @@ namespace ParkingService
 
                 vaga.AguardandoSinalizacao = false;
             }
+
+            ct.SaveChanges();
 
             return listaSinalizar;
         }
