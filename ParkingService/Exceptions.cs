@@ -40,5 +40,11 @@ namespace ParkingService
         public exCarroNaoEncontrado(string Tag) :
             base("Não foi encontrado nenhum carro com a Tag \"" + Tag + "\".") { }
     }
+    
+    public class exVagaNaoOcupada : ApplicationException
+    {
+        public exVagaNaoOcupada(string NomeVaga) :
+            base("A Vaga " + NomeVaga + " não se encontra ocupada.") { }
+    }
 
 }

@@ -81,6 +81,7 @@ namespace ParkingService
             Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 
             vaga.Situacao = eSituacaoVaga.Ocupada.ToString();
+            vaga.HoraReserva = null;
 
             if (!string.IsNullOrEmpty(Tag))
             {
@@ -88,6 +89,29 @@ namespace ParkingService
 
                 vaga.Id_Carro = carro.Id;
             }
+            else
+            {
+                vaga.Id_Carro = null;
+            }
+
+            //LOG: OcuparVaga
+
+            ct.SaveChanges();
+        }
+        
+        public void LiberarVaga(int Id_Vaga)
+        {
+
+            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
+
+            if (vaga.Situacao != eSituacaoVaga.Ocupada.ToString())
+            {
+                throw new exVagaNaoOcupada(vaga.Nome);
+            }
+
+            vaga.Situacao = eSituacaoVaga.Livre.ToString();
+
+            // LOG: LiberarVaga
 
             ct.SaveChanges();
         }
