@@ -12,13 +12,7 @@
           <EntitySet Name="Caminho_Mapa" EntityType="ParkingDBModel.Store.Caminho_Mapa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Carro" EntityType="ParkingDBModel.Store.Carro" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cliente" EntityType="ParkingDBModel.Store.Cliente" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Store.Configuracao" store:Type="Tables" store:Schema="dbo" store:Name="Configuracao">
-            <DefiningQuery>SELECT 
-      [Configuracao].[Chave] AS [Chave], 
-      [Configuracao].[Nome] AS [Nome], 
-      [Configuracao].[Valor] AS [Valor]
-      FROM [dbo].[Configuracao] AS [Configuracao]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Store.Configuracao" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Mapa" EntityType="ParkingDBModel.Store.Mapa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Totem" EntityType="ParkingDBModel.Store.Totem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vaga" EntityType="ParkingDBModel.Store.Vaga" store:Type="Tables" Schema="dbo" />
@@ -111,14 +105,9 @@
           <Property Name="Data_Cadastrado" Type="date" Nullable="false" />
           <Property Name="Sexo" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ParkingDB.dbo.Configuracao' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Configuracao">
           <Key>
             <PropertyRef Name="Chave" />
-            <PropertyRef Name="Nome" />
-            <PropertyRef Name="Valor" />
           </Key>
           <Property Name="Chave" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
@@ -307,7 +296,6 @@
             <End Role="Caminho_Mapa" EntitySet="Caminho_Mapa" />
           </AssociationSet>
           <EntitySet Name="Carro" EntityType="ParkingDBModel.Carro" />
-          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Configuracao" />
           <AssociationSet Name="FK_Cliente_Carro" Association="ParkingDBModel.FK_Cliente_Carro">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Carro" EntitySet="Carro" />
@@ -316,6 +304,7 @@
             <End Role="Carro" EntitySet="Carro" />
             <End Role="Vaga" EntitySet="Vaga" />
           </AssociationSet>
+          <EntitySet Name="Configuracao" EntityType="ParkingDBModel.Configuracao" />
         </EntityContainer>
         <EntityType Name="Andar">
           <Key>
@@ -502,16 +491,6 @@
           <NavigationProperty Name="Cliente" Relationship="ParkingDBModel.FK_Cliente_Carro" FromRole="Carro" ToRole="Cliente" />
           <NavigationProperty Name="Vaga" Relationship="ParkingDBModel.FK_Vaga_Carro" FromRole="Carro" ToRole="Vaga" />
         </EntityType>
-        <EntityType Name="Configuracao">
-          <Key>
-            <PropertyRef Name="Valor" />
-            <PropertyRef Name="Nome" />
-            <PropertyRef Name="Chave" />
-          </Key>
-          <Property Type="String" Name="Valor" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Chave" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <Association Name="FK_Cliente_Carro">
           <End Type="ParkingDBModel.Cliente" Role="Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -538,6 +517,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Configuracao">
+          <Key>
+            <PropertyRef Name="Chave" />
+          </Key>
+          <Property Type="String" Name="Chave" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nome" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Valor" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -639,9 +626,9 @@
           <EntitySetMapping Name="Configuracao">
             <EntityTypeMapping TypeName="ParkingDBModel.Configuracao">
               <MappingFragment StoreEntitySet="Configuracao">
-                <ScalarProperty Name="Chave" ColumnName="Chave" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Chave" ColumnName="Chave" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

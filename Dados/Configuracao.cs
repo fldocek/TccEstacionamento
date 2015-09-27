@@ -14,8 +14,8 @@ namespace Dados
     
     public partial class Configuracao
     {
-        public string Valor { get; set; }
-        public string Nome { get; set; }
         public string Chave { get; set; }
+        public string Nome { get; set; }
+        public string Valor { get; set; }
     }
 }

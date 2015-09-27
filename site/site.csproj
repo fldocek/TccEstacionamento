@@ -132,6 +132,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AndarController.cs" />
     <Compile Include="Controllers\BlocoController.cs" />
+    <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VagaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,6 +231,8 @@
     <Content Include="Views\Vaga\Delete.cshtml" />
     <Content Include="Views\Vaga\Details.cshtml" />
     <Content Include="Views\Vaga\Edit.cshtml" />
+    <Content Include="Views\Configuracao\Index.cshtml" />
+    <Content Include="Views\Configuracao\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

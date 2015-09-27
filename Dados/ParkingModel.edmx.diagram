@@ -21,9 +21,9 @@
         <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" />
         <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Mapa" />
         <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="3.625" PointY="6.25" />
-        <EntityTypeShape EntityType="ParkingDBModel.Configuracao" Width="1.5" PointX="9.375" PointY="7" />
         <AssociationConnector Association="ParkingDBModel.FK_Cliente_Carro" />
         <AssociationConnector Association="ParkingDBModel.FK_Vaga_Carro" />
+        <EntityTypeShape EntityType="ParkingDBModel.Configuracao" Width="1.5" PointX="10.5" PointY="6.875" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

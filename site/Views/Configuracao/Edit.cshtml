@@ -1,0 +1,35 @@
+﻿@model Dados.Configuracao
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Configuracao</legend>
+
+        <div class="Row">
+            @Html.Label(Model.Nome)
+        </div>
+        <div class="Row">
+            @Html.EditorFor(model => model.Valor)
+            @Html.ValidationMessageFor(model => model.Valor)
+        </div>
+           
+        <div class="Row">
+            <input type="submit" value="Save" />
+
+            @Html.ActionLink("Cancelar", "Index")
+
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
