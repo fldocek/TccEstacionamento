@@ -39,12 +39,8 @@ namespace site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Configuracao entrada)
+        public ActionResult Edit(Configuracao configuracao)
         {
-            Configuracao configuracao = db.Configuracao.Find(entrada.Chave);
-
-            configuracao.Valor = entrada.Valor;
-
             if (ModelState.IsValid)
             {
                 db.Entry(configuracao).State = EntityState.Modified;

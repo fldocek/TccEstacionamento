@@ -87,7 +87,7 @@ namespace site.Controllers
             {
                 db.Entry(bloco).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { bloco.Id });
             }
             ViewBag.Id_Andar = new SelectList(db.Andar, "Id", "Nome", bloco.Id_Andar);
             return View(bloco);
@@ -116,7 +116,7 @@ namespace site.Controllers
             Bloco bloco = db.Bloco.Find(id);
             db.Bloco.Remove(bloco);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Andar",null);
         }
 
         protected override void Dispose(bool disposing)

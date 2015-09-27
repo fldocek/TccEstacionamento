@@ -4,32 +4,35 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Configuração</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+<div class="col-xs-3">
 
-    <fieldset>
-        <legend>Configuracao</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-        <div class="Row">
+        @Html.HiddenFor(model => model.Nome)
+
+        <div class="form-group">
             @Html.Label(Model.Nome)
-        </div>
-        <div class="Row">
-            @Html.EditorFor(model => model.Valor)
+            @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Valor)
         </div>
            
         <div class="Row">
-            <input type="submit" value="Save" />
-
-            @Html.ActionLink("Cancelar", "Index")
+            
+            <button type="submit" class="btn btn-primary">Salvar</button>
+              
+            <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Index")';">Cancelar</button>  
 
         </div>
-    </fieldset>
-}
+    
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

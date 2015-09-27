@@ -10,14 +10,6 @@
 
     <div class="row">
 
-        <div class="col-lg-3" style="white-space: nowrap;">
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) | @Html.ActionLink("Voltar", "Index", "Andar", null, null)
-        </div>
-
-    </div>
-
-    <div class="row">
-
         <div class="col-lg-3">
 
             <label>
@@ -46,9 +38,10 @@
 
     <div class="row">
 
-        <h3>Vagas</h3>
-
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vagas</h3>
+            </div>
             <div class="panel-body">
 
                 @foreach (var vaga in Model.Vaga)
@@ -67,8 +60,8 @@
                                 }
                                 else
                                 {
-                                    cssSituacao = "panel-success";   
-                                }                                   
+                                    cssSituacao = "panel-success";
+                                }
                             }
                             else
                             {
@@ -98,5 +91,15 @@
         </div>
 
     </div>
+
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Edit", new { Model.Id })';">
+        Editar
+    </button>
+
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Index", "Andar", null)';">
+        Voltar
+    </button>
 
 </div>

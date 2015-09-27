@@ -4,75 +4,70 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="col-xs-5">
 
-<fieldset>
-    <legend>Vaga</legend>
+    <h2>Vaga</h2>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Id_Bloco)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Id_Bloco)
-    </div>
+    <div class="row">
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nome)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nome)
-    </div>
+        <div class="col-lg-6 form-group">
+            <label>Nome</label>
+            <p class="form-control-static">@Model.Nome</p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Situacao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Situacao)
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label>Bloco</label>
+            <p class="form-control-static">@Model.Bloco.Nome</p>
+        </div>
+
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Id_Carro)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Id_Carro)
+    <div class="row">
+
+        <div class="col-lg-6 form-group">
+            <label>Situação</label>
+            <p class="form-control-static">@Model.Situacao</p>
+        </div>
+
+
+        <div class="col-lg-6 checkbox">
+            <label>
+                @Html.DisplayFor(model => model.Deficiente)
+
+                Deficiente
+            </label>
+        </div>
+
+
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.HoraReserva)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.HoraReserva)
+    <div class="row">
+
+        <div class="col-lg-6 form-group">
+            <label>Endereço do sensor</label>
+            <p class="form-control-static">@Model.EnderecoSensor</p>
+
+        </div>
+
+        <div class="col-lg-6 checkbox">
+            <label>
+                @Html.DisplayFor(model => model.Bloqueada)
+
+                Bloqueada para reserva
+            </label>
+
+        </div>
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Deficiente)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Deficiente)
-    </div>
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Edit", new { Model.Id })';">
+        Editar
+    </button>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EnderecoSensor)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EnderecoSensor)
-    </div>
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Details", "Bloco", new { id = Model.Id_Bloco })';">
+        Voltar
+    </button>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.AguardandoSinalizacao)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AguardandoSinalizacao)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Bloqueada)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Bloqueada)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

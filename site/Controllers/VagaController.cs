@@ -56,11 +56,10 @@ namespace site.Controllers
             {
                 db.Vaga.Add(vaga);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { vaga.Id });
             }
 
             ViewBag.Id_Bloco = new SelectList(db.Bloco, "Id", "Nome", vaga.Id_Bloco);
-            ViewBag.Id_Carro = new SelectList(db.Carro, "Id", "Marca", vaga.Id_Carro);
             return View(vaga);
         }
 
@@ -90,7 +89,7 @@ namespace site.Controllers
             {
                 db.Entry(vaga).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { vaga.Id });
             }
             ViewBag.Id_Bloco = new SelectList(db.Bloco, "Id", "Nome", vaga.Id_Bloco);
             ViewBag.Id_Carro = new SelectList(db.Carro, "Id", "Marca", vaga.Id_Carro);
