@@ -1,0 +1,51 @@
+﻿@model Dados.Totem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="col-lg-6">
+
+    <h2>Totem</h2>
+
+    <div class="row">
+
+        <div class="col-lg-6 form-group">
+            <label>Andar</label>
+            <p class="form-control-static">@Model.Andar.Nome</p>
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label>Localização</label>
+            <p class="form-control-static">@Model.Localizacao</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="@ViewBag.imgSrc" title="QRCode" alt="QRCode" width="300" height="300" />
+        </div>
+        <div class="text-center" style="width: 300px;">
+
+            <button type="button" class="btn btn-default" 
+                onclick="window.open('@Url.Action("Print", new { id = Model.Id })')" >
+                Imprimir
+            </button>
+
+        </div>
+    </div>
+
+    <br />
+
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Edit", new { Model.Id })';">
+        Editar
+    </button>
+
+    <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Index")';">
+        Voltar
+    </button>
+
+</div>
