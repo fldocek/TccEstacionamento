@@ -4,97 +4,93 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="col-xs-5">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <h2>Vaga</h2>
 
-    <fieldset>
-        <legend>Vaga</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id_Bloco)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id_Bloco)
-            @Html.ValidationMessageFor(model => model.Id_Bloco)
-        </div>
+        @Html.HiddenFor(model => model.Id)
+ 
+        <div class="row">
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nome)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nome)
-            @Html.ValidationMessageFor(model => model.Nome)
-        </div>
+            <div class="col-lg-6 form-group">
+                @Html.LabelFor(model => model.Nome)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Situacao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Situacao)
-            @Html.ValidationMessageFor(model => model.Situacao)
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nome)
+            </div>
+
+            <div class="col-lg-6 form-group">
+                @Html.Label("Bloco")
+
+                @Html.DropDownList("Id_Bloco", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_Bloco)
+            </div>
+
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id_Carro)
+        <div class="row">
+
+            <div class="col-lg-6 form-group">
+                @Html.HiddenFor(model => model.Situacao)
+
+                <label>Situação</label>
+                <p class="form-control-static">@Model.Situacao</p>
+            </div>
+
+            @Html.HiddenFor(model => model.Id_Carro)
+
+            @Html.HiddenFor(model => model.HoraReserva)
+
+            <div class="col-lg-6 checkbox">
+                <label>
+                    @Html.EditorFor(model => model.Deficiente)
+                    @Html.ValidationMessageFor(model => model.Deficiente)
+
+                    Deficiente
+                </label>
+            </div>
+
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id_Carro)
-            @Html.ValidationMessageFor(model => model.Id_Carro)
+        
+        <div class="row">
+
+            <div class="col-lg-6 form-group">
+                @Html.Label("Endereço do sensor")
+
+                @Html.TextBoxFor(model => model.EnderecoSensor, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EnderecoSensor)
+            </div>
+
+            @Html.HiddenFor(model => model.AguardandoSinalizacao)
+
+            <div class="col-lg-6 checkbox">
+                <label>
+                    @Html.EditorFor(model => model.Bloqueada)
+                    @Html.ValidationMessageFor(model => model.Bloqueada)
+
+                    Bloqueada para reserva
+                </label>
+            </div>
+
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.HoraReserva)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.HoraReserva)
-            @Html.ValidationMessageFor(model => model.HoraReserva)
-        </div>
+        <button type="submit" value="Create" class="btn btn-primary">Salvar</button>
+        
+        <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Index")';">
+            Cancelar
+        </button>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Deficiente)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Deficiente)
-            @Html.ValidationMessageFor(model => model.Deficiente)
-        </div>
+    }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EnderecoSensor)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EnderecoSensor)
-            @Html.ValidationMessageFor(model => model.EnderecoSensor)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AguardandoSinalizacao)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AguardandoSinalizacao)
-            @Html.ValidationMessageFor(model => model.AguardandoSinalizacao)
-        </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Bloqueada)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Bloqueada)
-            @Html.ValidationMessageFor(model => model.Bloqueada)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

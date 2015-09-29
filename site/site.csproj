@@ -132,8 +132,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AndarController.cs" />
     <Compile Include="Controllers\BlocoController.cs" />
+    <Compile Include="Controllers\CaminhoController.cs" />
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapaController.cs" />
     <Compile Include="Controllers\VagaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -233,13 +235,22 @@
     <Content Include="Views\Vaga\Edit.cshtml" />
     <Content Include="Views\Configuracao\Index.cshtml" />
     <Content Include="Views\Configuracao\Edit.cshtml" />
+    <Content Include="Views\Caminho\Index.cshtml" />
+    <Content Include="Views\Caminho\Details.cshtml" />
+    <Content Include="Views\Caminho\Create.cshtml" />
+    <Content Include="Views\Caminho\Edit.cshtml" />
+    <Content Include="Views\Caminho\Delete.cshtml" />
+    <Content Include="Views\Mapa\Index.cshtml" />
+    <Content Include="Views\Mapa\Details.cshtml" />
+    <Content Include="Views\Mapa\Create.cshtml" />
+    <Content Include="Views\Mapa\Edit.cshtml" />
+    <Content Include="Views\Mapa\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="js\bootstrap\" />
     <Folder Include="js\css\" />
     <Folder Include="js\font-awesome\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

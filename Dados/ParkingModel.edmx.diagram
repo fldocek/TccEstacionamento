@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="ParkingDBModel.Caminho" Width="1.5" PointX="7.5" PointY="2.625" />
         <EntityTypeShape EntityType="ParkingDBModel.Caminho_Mapa" Width="1.5" PointX="9.75" PointY="2" />
         <EntityTypeShape EntityType="ParkingDBModel.Cliente" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="7.5" PointY="5.125" />
         <EntityTypeShape EntityType="ParkingDBModel.Totem" Width="1.5" PointX="3" PointY="3.625" />
         <EntityTypeShape EntityType="ParkingDBModel.Vaga" Width="1.5" PointX="5.375" PointY="0.5" />
         <AssociationConnector Association="ParkingDBModel.FK_Bloco_Andar" />
@@ -19,11 +18,12 @@
         <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Caminho" />
         <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Totem" ></AssociationConnector>
         <AssociationConnector Association="ParkingDBModel.FK_Mapa_Vaga_Vaga" />
-        <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Mapa" />
         <EntityTypeShape EntityType="ParkingDBModel.Carro" Width="1.5" PointX="3.625" PointY="6.25" />
         <AssociationConnector Association="ParkingDBModel.FK_Cliente_Carro" />
         <AssociationConnector Association="ParkingDBModel.FK_Vaga_Carro" />
         <EntityTypeShape EntityType="ParkingDBModel.Configuracao" Width="1.5" PointX="10.5" PointY="6.875" />
+        <EntityTypeShape EntityType="ParkingDBModel.Mapa" Width="1.5" PointX="7.5" PointY="5.75" />
+        <AssociationConnector Association="ParkingDBModel.FK_Caminho_Mapa_Mapa" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

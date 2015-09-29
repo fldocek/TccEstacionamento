@@ -1,0 +1,47 @@
+﻿@model Dados.Caminho
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="col-xs-5">
+
+    <h2>Caminho</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="col-lg-6 form-group">
+            @Html.Label("Início")
+
+            @Html.DropDownList("Id_Totem", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id_Totem)
+        </div>
+               
+        <div class="col-lg-6 form-group">
+            @Html.LabelFor(model => model.Id_Vaga, "Vaga")
+
+            @Html.DropDownList("Id_Vaga", null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id_Vaga)
+        </div>
+
+        <div class="col-lg-12">
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Index")';">
+                Cancelar
+            </button>
+
+        </div>
+
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</div>

@@ -42,7 +42,9 @@ namespace site.Controllers
         {
             ViewBag.Id_Bloco = new SelectList(db.Bloco, "Id", "Nome");
             ViewBag.Id_Carro = new SelectList(db.Carro, "Id", "Marca");
-            return View();
+
+            var model = new Vaga();
+            return View(model);
         }
 
         //

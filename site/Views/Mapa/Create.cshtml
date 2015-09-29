@@ -1,0 +1,50 @@
+﻿@model Dados.Mapa
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="col-xs-5">
+
+    <h2>Mapa</h2>
+
+    @using (Html.BeginForm("Create", "Mapa", FormMethod.Post, new {enctype="multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        string Id_Caminho = ViewBag.Id_Caminho.ToString();
+
+        @Html.Hidden("Id_Caminho", Id_Caminho)
+        
+        <div class="col-lg-12 form-group">
+            @Html.Label("Descrição")
+
+            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+        
+        <div class="col-lg-12 form-group">
+            @Html.Label("Imagem")
+
+            <input type="file" name="FileUpload1" />
+        </div>
+        
+        <div class="col-lg-12">
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Details", "Caminho", new {id = @Id_Caminho })';">
+                Cancelar
+            </button>
+
+        </div>
+
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</div>
