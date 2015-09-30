@@ -22,13 +22,13 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void OcuparVaga(int Id_Vaga, string Tag);
+        void OcuparVaga(string EnderecoSensor, string Tag);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void LiberarVaga(int Id_Vaga);
+        void LiberarVaga(string EnderecoSensor);
         
     }
 }

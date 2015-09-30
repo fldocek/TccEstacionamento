@@ -66,6 +66,17 @@ namespace ParkingService
 
             return CPF;
         }
+        
+        internal static Vaga ConsultarVagaPorEndereco(string EnderecoSensor, ParkingDBEntities ct)
+        {
+            Vaga vaga = (from V in ct.Vaga where V.EnderecoSensor == EnderecoSensor select V).SingleOrDefault();
 
+            if (vaga == null)
+            {
+                throw new exVagaNaoEncontrada(EnderecoSensor);
+            }
+
+            return vaga;
+        }
     }
 }

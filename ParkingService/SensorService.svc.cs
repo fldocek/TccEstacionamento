@@ -76,9 +76,9 @@ namespace ParkingService
             return listaSinalizar;
         }
 
-        public void OcuparVaga(int Id_Vaga, string Tag)
+        public void OcuparVaga(string EnderecoSensor, string Tag)
         {
-            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
+            Vaga vaga = Util.ConsultarVagaPorEndereco(EnderecoSensor, ct);
 
             vaga.Situacao = eSituacaoVaga.Ocupada.ToString();
             vaga.HoraReserva = null;
@@ -98,11 +98,10 @@ namespace ParkingService
 
             ct.SaveChanges();
         }
-        
-        public void LiberarVaga(int Id_Vaga)
-        {
 
-            Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
+        public void LiberarVaga(string EnderecoSensor)
+        {
+            Vaga vaga = Util.ConsultarVagaPorEndereco(EnderecoSensor, ct);
 
             if (vaga.Situacao != eSituacaoVaga.Ocupada.ToString())
             {

@@ -15,6 +15,9 @@ namespace ParkingService
     {
         public exVagaNaoEncontrada(int Id_Vaga) :
             base("Vaga de Id \"" + Id_Vaga + "\" não encontrada!") { }
+
+        public exVagaNaoEncontrada(String EnderecoSensor) :
+            base("Vaga de endereço \"" + EnderecoSensor + "\" não encontrada!") { }
     }
 
     public class exVagaJaReservada : ApplicationException
