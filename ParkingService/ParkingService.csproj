@@ -96,6 +96,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\SmartParking %28File%29.pubxml" />
     <None Include="Properties\PublishProfiles\SmartParking %28FTP%29.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

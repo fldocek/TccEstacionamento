@@ -109,6 +109,7 @@ namespace ParkingService
             }
 
             vaga.Situacao = eSituacaoVaga.Livre.ToString();
+            vaga.Id_Carro = null;
 
             // LOG: LiberarVaga
 
