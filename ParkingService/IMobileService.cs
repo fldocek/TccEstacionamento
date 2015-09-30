@@ -68,7 +68,7 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        dtoCaminho LocalizarCarro(int Id_QRCode, int Id_Carro);
+        dtoCaminho LocalizarCarro(int Id_Totem, int Id_Carro);
 
     }
 

@@ -172,16 +172,13 @@ namespace ParkingService
             }
 
             dtoCaminho dto = new dtoCaminho();
+            dto.ListaImagens = new List<string>();
 
-            foreach (var mapa in caminho.Caminho_Mapa)
+            foreach (var caminhoMapa in caminho.Caminho_Mapa)
             {
-                Bitmap bmp;
-                using (var ms = new MemoryStream(mapa.Mapa.Imagem))
-                {
-                    bmp = new Bitmap(ms);
-                }
+                string base64 = Convert.ToBase64String(caminhoMapa.Mapa.Imagem);
 
-                dto.ListaImagens.Add(bmp);
+                dto.ListaImagens.Add(base64);
             }
 
             return dto;

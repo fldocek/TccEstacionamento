@@ -15,7 +15,7 @@ namespace ParkingService
     {
 
         [DataMember]
-        public List<Bitmap> ListaImagens { get; set; }
+        public List<string> ListaImagens { get; set; }
 
     }
 }
