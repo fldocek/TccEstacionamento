@@ -1,0 +1,58 @@
+﻿@model Dados.Carro
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="col-xs-5">
+
+    <h2>Carro</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        string Id_Cliente = ViewBag.Id_Cliente.ToString();
+
+        @Html.Hidden("Id_Cliente", Id_Cliente)
+    
+        <div class="col-lg-12 form-group">
+            @Html.Label("Placa")
+
+            @Html.TextBoxFor(model => model.Placa, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Placa)
+        </div>
+        
+        <div class="col-lg-12 form-group">
+            @Html.Label("Marca")
+
+            @Html.TextBoxFor(model => model.Marca, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Marca)
+        </div>
+        
+        <div class="col-lg-12 form-group">
+            @Html.Label("Tag")
+
+            @Html.TextBoxFor(model => model.Tag, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Tag)
+        </div>
+        
+        <div class="col-lg-12">
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+            <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Details", "Cliente", new { id = @Id_Cliente })';">
+                Cancelar
+            </button>
+
+        </div>
+
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+</div>

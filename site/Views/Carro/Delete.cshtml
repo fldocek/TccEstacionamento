@@ -1,0 +1,53 @@
+﻿@model Dados.Carro
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="col-lg-6">
+
+    <h2>Carro</h2>
+
+    <h3>Você tem certeza que quer deletar esse registro?</h3>
+
+    <div class="row">
+
+        <div class="col-lg-6 form-group">
+            <label>Cliente</label>
+            <p class="form-control-static">@Model.Cliente.Nome</p>
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label>Placa</label>
+            <p class="form-control-static">@Model.Placa</p>
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label>Marca</label>
+            <p class="form-control-static">@Model.Marca</p>
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label>Tag</label>
+            <p class="form-control-static">@Model.Tag</p>
+        </div>
+
+    </div>
+
+        <br />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" value="Deletar" class="btn btn-primary">
+
+                <button type="button" class="btn btn-primary" 
+                onclick="window.location='@Url.Action("Details", "Cliente", new { id = Model.Id_Cliente })';">
+                    Cancelar
+                </button>
+
+            </p>
+        }
+
+</div>

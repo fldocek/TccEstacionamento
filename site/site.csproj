@@ -136,6 +136,8 @@
     <Compile Include="Controllers\AndarController.cs" />
     <Compile Include="Controllers\BlocoController.cs" />
     <Compile Include="Controllers\CaminhoController.cs" />
+    <Compile Include="Controllers\CarroController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ConfiguracaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MapaController.cs" />
@@ -255,6 +257,15 @@
     <Content Include="Views\Totem\Edit.cshtml" />
     <Content Include="Views\Totem\Delete.cshtml" />
     <Content Include="Views\Totem\Print.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Carro\Details.cshtml" />
+    <Content Include="Views\Carro\Create.cshtml" />
+    <Content Include="Views\Carro\Edit.cshtml" />
+    <Content Include="Views\Carro\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
