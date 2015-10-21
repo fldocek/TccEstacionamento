@@ -59,7 +59,7 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro);
+        IEnumerable<dtoSituacaoVaga> ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro);
 
         //Fluxo Localizar Carro
         //=====================
@@ -68,7 +68,7 @@ namespace ParkingService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        dtoCaminho LocalizarCarro(int Id_Totem, int Id_Carro);
+        IEnumerable<dtoMapa> LocalizarCarro(int Id_Totem, int Id_Carro);
 
     }
 

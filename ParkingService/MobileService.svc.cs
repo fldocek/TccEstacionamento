@@ -135,32 +135,36 @@ namespace ParkingService
 
         #region Fluxo Manter Vaga Reservada
 
-        public dtoSituacaoVaga ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro)
+        public IEnumerable<dtoSituacaoVaga> ConsultaSituacaoVaga(int Id_Vaga, int Id_Carro)
         {
             Vaga vaga = Util.ConsultarVaga(Id_Vaga, ct);
 
             dtoSituacaoVaga situacao = new dtoSituacaoVaga();
-            situacao.VagaAindaReservada = false;
-            situacao.ReservaConcluidaComSucesso = false;
+            situacao.VagaAindaReservada = false.ToString();
+            situacao.ReservaConcluidaComSucesso = false.ToString();
 
             if (vaga.Situacao == eSituacaoVaga.Reservada.ToString() && vaga.Id_Carro == Id_Carro)
             {
-                situacao.VagaAindaReservada = true;
+                situacao.VagaAindaReservada = true.ToString();
             }
             else if (vaga.Situacao == eSituacaoVaga.Ocupada.ToString() && vaga.Id_Carro == Id_Carro)
             {
-                situacao.ReservaConcluidaComSucesso = true;
+                situacao.ReservaConcluidaComSucesso = true.ToString();
 
             }
 
-            return situacao;
+            List<dtoSituacaoVaga> lista = new List<dtoSituacaoVaga>();
+
+            lista.Add(situacao);
+
+            return lista;
         }
 
         #endregion
 
         #region Fluxo Localizar Carro
 
-        public dtoCaminho LocalizarCarro(int Id_Totem, int Id_Carro)
+        public IEnumerable<dtoMapa> LocalizarCarro(int Id_Totem, int Id_Carro)
         {
             var caminho = (from C in ct.Caminho
                            where C.Id_Totem == Id_Totem && C.Vaga.Id_Carro == Id_Carro
@@ -171,17 +175,18 @@ namespace ParkingService
                 return null;
             }
 
-            dtoCaminho dto = new dtoCaminho();
-            dto.ListaImagens = new List<string>();
+            //dtoCaminho dto = new dtoCaminho();
+            //dto.ListaImagens = new List<string>();
+            List<dtoMapa> ListaImagens = new List<dtoMapa>();
 
             foreach (var caminhoMapa in caminho.Caminho_Mapa)
             {
                 string base64 = Convert.ToBase64String(caminhoMapa.Mapa.Imagem);
 
-                dto.ListaImagens.Add(base64);
+                ListaImagens.Add(new dtoMapa { Imagem = base64 });
             }
 
-            return dto;
+            return ListaImagens;
             //TODO: Log LocalizarCarro (guardar totem pesquisado)
         }
 

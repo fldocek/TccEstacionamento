@@ -10,14 +10,11 @@ using System.Text;
 namespace ParkingService
 {
     [DataContract]
-    public class dtoSituacaoVaga
+    public class dtoMapa
     {
 
         [DataMember]
-        public string ReservaConcluidaComSucesso { get; set; }
-
-        [DataMember]
-        public string VagaAindaReservada { get; set; }
+        public string Imagem { get; set; }
 
     }
 }
